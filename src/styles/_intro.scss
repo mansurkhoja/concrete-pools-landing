@@ -1,0 +1,41 @@
+@use "media";
+@use "var";
+
+.intro {
+	padding: 155px 0 96px;
+	text-align: center;
+
+	&__title {
+		font-size: 42px;
+		margin-bottom: 32px;
+		line-height: 1.14;
+		padding: 0 12px;
+
+		&-item {
+			display: inline-flex;
+		}
+
+		span {
+			display: inline-block;
+			position: relative;
+			will-change: transform;
+		}
+
+		@include media.tablet-mini {
+			font-size: 56px;
+		}
+
+		@include media.tablet {
+			font-size: 76px;
+		}
+	}
+
+	@include media.desktop {
+		padding: 200px 120px;
+
+		&__title {
+			font-size: 86px;
+			margin-bottom: 40px;
+		}
+	}
+}

@@ -1,0 +1,10 @@
+@use "var";
+
+.preloader {
+	background-color: #fff;
+	font-size: 60px;
+	font-weight: 600;
+	z-index: var.$index-preloader;
+	user-select: none;
+	color: #d2e4ff;
+}

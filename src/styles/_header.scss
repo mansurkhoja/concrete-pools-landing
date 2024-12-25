@@ -1,0 +1,89 @@
+@use "media";
+@use "var";
+@use "sass:map";
+@use "sass:math";
+
+.header {
+	padding: 0 var.$padding;
+	height: var.$size-header;
+	z-index: var.$index-header;
+	backdrop-filter: blur(10px);
+	backface-visibility: hidden;
+	background-color: var.$color-header-background;
+	will-change: transform;
+	transition: map.get(var.$transition, "onShowHide");
+
+	&__inner {
+		justify-content: space-between;
+		height: inherit;
+		will-change: opacity;
+		transition: opacity math.div(map.get(var.$transition-duration, "show/hide"), 1.6) var.$easing-linear;
+	}
+
+	&--hide {
+		transform: translateY(-100%);
+
+		.header__inner {
+			opacity: 0;
+		}
+	}
+
+	&__logo {
+		width: 125px;
+		filter: grayscale(1);
+		will-change: filter;
+		transition: filter map.get(var.$transition-duration, "hover/active") var.$easing-ease-in-out;
+
+		@include media.hover {
+			&:hover {
+				filter: grayscale(0);
+			}
+		}
+
+		@include media.touch {
+			&:active {
+				filter: grayscale(0);
+			}
+		}
+	}
+
+	@include media.tablet-mini {
+		&__links {
+			display: flex;
+			align-items: center;
+			margin: 0 (30px - 6px) 0 auto;
+			font-size: 14px;
+		}
+
+		&__link {
+			margin-right: 6px;
+
+			&:first-child {
+				margin-right: 30px;
+				font-weight: 600;
+			}
+		}
+	}
+
+	@include media.desktop {
+		height: var.$size-header-desktop;
+		padding: 0 var.$padding-tablet;
+
+		&__links {
+			margin-right: (40px - 8px);
+			font-size: 16px;
+		}
+
+		&__link {
+			margin-right: 8px;
+
+			&:first-child {
+				margin-right: 40px;
+			}
+		}
+
+		&__logo {
+			width: 155px;
+		}
+	}
+}

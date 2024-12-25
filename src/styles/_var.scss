@@ -1,0 +1,84 @@
+@use "sass:map";
+
+// colors
+$color-dark-main: #3c434e;
+$color-dar-second: #2c2c2c;
+$color-blue-main: #4f72a6;
+$color-white-main: #fff;
+$color-cursor: $color-blue-main;
+$color-button: $color-blue-main;
+$color-header-background: rgba(
+	$color: $color-white-main,
+	$alpha: 0.8
+);
+$color-nav: $color-white-main;
+$color-nav-background: rgba(
+	$color: #000,
+	$alpha: 0.45
+);
+$color-nav-mask: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent 100%);
+$color-nav-mask--expanded: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent 100%);
+$color-title: $color-dar-second;
+$color-subtitle: rgba($color-dark-main, 0.7);
+$color-body-background: $color-white-main;
+$color-modal-background: rgba(#000, 0.4);
+$color-loader-background: #cbe0ff;
+
+// easing
+$easing-linear: cubic-bezier(0, 0, 1, 1);
+$easing-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+$easing-ease-in-out: cubic-bezier(0.42, 0, 0.58, 1);
+$easing-sine-in-out: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+$easing-back-out: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$easing-quart-out: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+// indexes
+$index-preloader: 9999;
+$index-cursor: 8889;
+$index-modal: 7777;
+$index-nav: 909;
+$index-header: 900;
+
+// sizes
+@function sizeSVH($percent: 100) {
+	/* @return calc(var(--svh, 1vh) * $percent); */
+	@return (1svh * $percent);
+}
+@function sizeDVH($percent: 100) {
+	@return (1dvh * $percent);
+}
+@function sizeVH($percent: 100) {
+	@return (1vh * $percent);
+}
+$size-cursor: 48px;
+$size-s-v-h-min: 300px;
+$size-d-v-h-min: 350px;
+$size-v-h-min: 400px;
+$size-header: 70px;
+$size-header-desktop: 90px;
+$size-nav: 55px;
+$size-nav-tablet-mini: 70px;
+$size-nav-toggle: 66px;
+$size-nav-toggle-tablet-mini: 80px;
+$size-btn: 39px;
+$size-btn-desktop: $size-cursor + 1px;
+
+// transitions
+$transition-duration: (
+	"default": 0.6s,
+	"show/hide": 0.4s,
+	"hover/active": 0.2s
+);
+$transition: (
+	"onClickScale": transform map.get($transition-duration, "hover/active") $easing-ease-in-out,
+	"onShowHide": transform map.get($transition-duration, "show/hide") $easing-ease-in-out
+);
+
+// positions
+$position-nav-bottom: 15px;
+$position-nav-bottom-tablet-mini: 20px;
+
+// paddings
+$padding: 16px;
+$padding-tablet: 20px;
+$padding-top-section: 250px;

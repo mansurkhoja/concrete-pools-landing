@@ -1,0 +1,31 @@
+{
+  "name": "concrete-pools-landing",
+  "description": "landing page for concrete pools",
+  "private": true,
+  "version": "0.1.0",
+  "author": "<mansur.atm@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 9992 --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview --port 9993 --host"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "htmlhint": "^1.1.4",
+    "postcss": "^8.4.49",
+    "sass": "^1.83.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5",
+    "vite-plugin-html-inject": "^1.1.2",
+    "vite-plugin-minify": "^2.1.0"
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "lenis": "^1.1.18"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.9.0"
+  }
+}

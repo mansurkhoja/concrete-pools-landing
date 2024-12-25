@@ -1,0 +1,33 @@
+$screen-tablet-mini: 720px;
+$screen-tablet: 1024px;
+$screen-desktop: 1280px;
+
+@mixin tablet-mini {
+	@media (min-width: #{$screen-tablet-mini}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: #{$screen-tablet}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: #{$screen-desktop}) {
+		@content;
+	}
+}
+
+@mixin hover {
+	@media (hover: hover) {
+		@content;
+	}
+}
+
+@mixin touch {
+	@media (hover: none) {
+		@content;
+	}
+}

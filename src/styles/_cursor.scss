@@ -1,0 +1,23 @@
+@use "var";
+
+.cursor {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: var.$size-cursor;
+	height: var.$size-cursor;
+	color: rgba(var.$color-cursor, 0.5);
+	border-radius: var.$size-cursor;
+	transform-origin: center;
+	user-select: none;
+	backface-visibility: hidden;
+	z-index: var.$index-cursor;
+
+	&--outline {
+		border: 1px solid currentColor;
+	}
+
+	&--circle {
+		background-color: currentColor;
+	}
+}

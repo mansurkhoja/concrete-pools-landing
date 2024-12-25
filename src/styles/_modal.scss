@@ -1,0 +1,138 @@
+@use "media";
+@use "var";
+@use "sass:map";
+@use "sass:math";
+
+.modal {
+	z-index: var.$index-modal;
+	background-color: var.$color-modal-background;
+
+	&--iframe {
+		z-index: var.$index-cursor + 1;
+	}
+
+	&__container {
+		position: relative;
+		height: 100%;
+		padding: 58px math.div(var.$padding, 2) math.div(var.$padding, 2);
+
+		&--iframe {
+			background-color: #fff;
+		}
+	}
+
+	&__close {
+		font-size: 20px;
+		color: #fff;
+		background-color: #acacac;
+		width: 48px;
+		height: 48px;
+		border-radius: 48px;
+		position: absolute;
+		z-index: 3;
+		right: math.div(var.$padding, 2);
+		top: 5px;
+		transition: map.get(var.$transition, "onClickScale");
+		transform-origin: center;
+		will-change: transform;
+
+		&:active {
+			transform: scale(0.9);
+		}
+	}
+
+	&__inner {
+		background-color: var.$color-body-background;
+		padding: math.div(var.$padding, 2);
+		overscroll-behavior: contain;
+		overflow: auto;
+		max-height: 100%;
+	}
+
+	&__image {
+		height: 50vw;
+		min-height: 40vw;
+		max-height: var.sizeVH(50);
+		margin-bottom: 20px;
+		background-color: var.$color-loader-background;
+	}
+
+	&__title {
+		font-size: 28px;
+		margin: 0;
+	}
+
+	&__text {
+		font-size: 16px;
+		color: var.$color-subtitle;
+		margin-top: 10px;
+	}
+
+	&__button {
+		margin-top: 20px;
+	}
+
+	@include media.tablet-mini {
+		&__container {
+			padding: var.$padding 58px var.$padding var.$padding;
+		}
+
+		&__close {
+			top: var.$padding;
+			right: 5px;
+		}
+
+		&__inner {
+			padding: var.$padding;
+		}
+
+		&__title {
+			font-size: 38px;
+		}
+
+		&__text {
+			font-size: 18px;
+			margin-top: 20px;
+		}
+	}
+
+	@include media.tablet {
+		&__container {
+			padding: var.$padding-tablet 58px var.$padding-tablet var.$padding-tablet;
+			max-width: 1080px;
+			margin: 0 auto;
+
+			&--iframe {
+				max-width: 100%;
+			}
+		}
+
+		&__close {
+			top: var.$padding-tablet;
+		}
+
+		&__inner {
+			padding: var.$padding-tablet;
+		}
+
+		&__image {
+			height: var.sizeVH(65);
+			min-height: 300px;
+			max-height: 600px;
+			margin-bottom: 30px;
+		}
+
+		&__title {
+			font-size: 48px;
+		}
+
+		&__text {
+			font-size: 20px;
+			margin-top: 30px;
+		}
+
+		&__button {
+			margin-top: 30px;
+		}
+	}
+}
