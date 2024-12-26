@@ -146,6 +146,8 @@ export default () => {
 				},
 				lock: true,
 				offset: offset > 0 ? offset - headerHeight() : 0,
+				lerp: 0.07,
+				duration: 1,
 			})
 			setActiveLink(link)
 			toggleNavExpand()
