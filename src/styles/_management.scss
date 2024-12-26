@@ -1,0 +1,266 @@
+@use "media";
+@use "var";
+@use "sass:map";
+
+.management {
+	padding: 0;
+	height: var.sizeVH();
+	min-height: var.$size-v-h-min;
+
+	&__inner {
+		position: relative;
+		height: var.sizeDVH();
+		min-height: var.$size-d-v-h-min;
+		display: flex;
+		align-items: flex-end;
+	}
+
+	&__slider {
+		height: calc(100% - 50px);
+	}
+
+	&__items {
+		z-index: 2;
+		padding: 0 var.$padding;
+	}
+
+	&__item {
+		position: relative;
+		user-select: none;
+
+		&:last-child {
+			margin-bottom: 2px;
+		}
+	}
+
+	&__title,
+	&__open {
+		background-color: rgba($color: #000000, $alpha: 0.64);
+		font-size: 19px;
+		border-radius: 20px;
+		backdrop-filter: blur(12px);
+		backface-visibility: hidden;
+		color: var.$color-white-main;
+		height: 112px;
+	}
+
+	&__open {
+		width: 160px;
+		padding: 15px;
+		text-align: left;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		margin-bottom: 8px;
+		transform-origin: left;
+
+		&-icon {
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background-color: rgba($color: #fff, $alpha: 0.16);
+			backdrop-filter: blur(6px);
+			backface-visibility: hidden;
+		}
+	}
+
+	&__title {
+		position: relative;
+		width: 280px;
+		user-select: none;
+	}
+
+	&__description {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		transform: translate(-50%, 100%);
+		padding: 0 var.$padding;
+		will-change: transform, opacity;
+		transition:
+			transform 0.8s var.$easing-ease-in-out,
+			opacity 1s var.$easing-ease-in-out;
+	}
+
+	&__phone {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		transform-origin: left;
+		visibility: hidden;
+
+		&-bg {
+			width: auto;
+			height: var.sizeVH(60);
+			min-height: var.$size-v-h-min;
+			max-height: 800px;
+		}
+
+		&-close {
+			position: absolute;
+			top: -24px;
+			right: -45px;
+			width: 48px;
+			height: 48px;
+			border-radius: 48px;
+			background: rgba($color: #000000, $alpha: 0.4);
+			color: #f9f9f9;
+
+			&:active {
+				transform: scale(0.9);
+			}
+		}
+
+		&-close,
+		&-button {
+			will-change: transform;
+			transform-origin: center;
+			transition: map.get(var.$transition, "onClickScale");
+		}
+
+		&-button {
+			&:not(.active) {
+				&:active {
+					transform: scaleX(0.97) scaleY(0.99);
+				}
+			}
+		}
+	}
+
+	#management-btn {
+		will-change: transform;
+		transition: transform 1s var.$easing-ease-in-out;
+	}
+
+	&[data-slider="0"] {
+		.management__description:first-child {
+			opacity: 1;
+			transform: translate(-50%, -50%);
+			transition-delay: 0.4s;
+		}
+	}
+
+	&[data-slider="1"] {
+		#management-btn {
+			transform: translateY(20%);
+		}
+
+		.management__description {
+			&:nth-child(2) {
+				opacity: 1;
+				transform: translate(-50%, -50%);
+				transition-delay: 0.4s;
+			}
+		}
+	}
+
+	&[data-slider="2"] {
+		#management-btn {
+			transform: translateY(40%);
+		}
+
+		.management__description {
+			&:nth-child(3) {
+				opacity: 1;
+				transform: translate(-50%, -50%);
+				transition-delay: 0.4s;
+			}
+		}
+	}
+
+	&[data-slider="3"] {
+		#management-btn {
+			transform: translateY(60%);
+		}
+
+		.management__description {
+			&:nth-child(4) {
+				transform: translate(-50%, -50%);
+				opacity: 1;
+				transition-delay: 0.4s;
+			}
+		}
+	}
+
+	@include media.tablet-mini {
+		&__items {
+			display: flex;
+			flex-direction: row-reverse;
+			align-items: flex-end;
+		}
+
+		&__item {
+			&:last-child {
+				margin-right: 8px;
+			}
+		}
+
+		&__open {
+			margin-bottom: 2px;
+		}
+	}
+
+	@include media.tablet {
+		&__items {
+			margin-left: auto;
+		}
+
+		&__item {
+			&:last-child {
+				margin-right: 24px;
+			}
+		}
+
+		&__open {
+			display: none;
+		}
+
+		&__phone {
+			position: static;
+			visibility: visible;
+
+			&-close {
+				display: none;
+			}
+		}
+	}
+
+	@include media.desktop {
+		&__items {
+			padding: 0 var.$padding-tablet;
+		}
+
+		&__title {
+			font-size: 24px;
+			width: 350px;
+			height: 150px;
+		}
+
+		&__description {
+			padding: 0 var.$padding-tablet;
+		}
+
+		&__phone {
+			&-bg {
+				height: var.sizeVH(80);
+				height: var.sizeSVH(80);
+			}
+		}
+	}
+}
+
+@media screen and (min-width: media.$screen-tablet) and (min-height: 730px) {
+	.management {
+		&__items {
+			will-change: opacity;
+			opacity: 0;
+			transition: opacity map.get(var.$transition-duration, "default") var.$easing-ease-in-out
+				map.get(var.$transition-duration, "default");
+
+			&.show {
+				opacity: 1;
+			}
+		}
+	}
+}

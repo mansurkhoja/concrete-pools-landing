@@ -13,7 +13,7 @@
 	padding: 0 var.$padding;
 	will-change: transform;
 	transform: translateX(-50%);
-	transition: transform map.get(var.$transition-duration, "hide/show") var.$easing-ease-in-out;
+	transition: map.get(var.$transition, "onShowHide");
 
 	&--hide {
 		transform: translate(-50%, calc(100% + (var.$position-nav-bottom + 1px)));

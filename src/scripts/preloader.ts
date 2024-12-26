@@ -1,5 +1,9 @@
 import { gsap } from 'gsap'
 import { onPreloadComplete as intro } from './intro'
+import {
+	onPreloadComplete as management,
+	loadAssets as loadManagement,
+} from './management'
 
 const preloader = document.querySelector('.preloader') as HTMLElement
 
@@ -11,6 +15,7 @@ const onReady = () => {
 		onComplete: () => {
 			preloader.remove()
 			intro()
+			management()
 			document.body.classList.remove('fixed')
 		},
 	})
@@ -19,7 +24,7 @@ const onReady = () => {
 const loadAssets = async () => {
 	if (import.meta.env.DEV) {
 		try {
-			// load()
+			loadManagement()
 			onReady()
 		} catch (error) {
 			if (import.meta.env.DEV) {
@@ -27,7 +32,7 @@ const loadAssets = async () => {
 			}
 		}
 	} else {
-		// await load()
+		await loadManagement()
 		onReady()
 	}
 }

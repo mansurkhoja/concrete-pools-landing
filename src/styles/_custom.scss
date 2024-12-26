@@ -199,6 +199,33 @@
   }
 }
 
+.progress {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  height: 6.4px;
+  width: 112px;
+  background-color: rgba(#999999, 0.3);
+  z-index: 9;
+  transform: translateX(-50%);
+  will-change: opacity;
+  opacity: 0;
+  --x: 0;
+  transition: opacity map.get(var.$transition-duration, "show/hide") var.$easing-linear
+    map.get(var.$transition-duration, "show/hide");
+
+  &--active {
+    opacity: 1;
+  }
+
+  &__line {
+    left: -100%;
+    background-color: #fff;
+    will-change: transform;
+    transform: translateX(calc(var(--x) * 1%));
+  }
+}
+
 @include media.hover {
   .btn {
     &:hover,
