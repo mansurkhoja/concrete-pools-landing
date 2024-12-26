@@ -1,7 +1,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getViewportDimensions, loadVideo } from './utils'
-import { toggleNavVisibility } from './nav'
+import { isScrollToHashInProgress, toggleNavVisibility } from './nav'
 import Slider from './slider'
 import { toggleHeaderVisibility } from './header'
 
@@ -96,40 +96,26 @@ export const onPreloadComplete = () => {
 		start: 'center-=100px center',
 		end: 'bottom+=68px bottom',
 		onEnterBack: () => {
+			if (isScrollToHashInProgress) return
 			toggleNavVisibility(true)
 			toggleHeaderVisibility(true)
 		},
 		onEnter: () => {
+			if (isScrollToHashInProgress) return
 			toggleNavVisibility(true)
 			toggleHeaderVisibility(true)
 		},
 		onLeave: () => {
+			if (isScrollToHashInProgress) return
 			toggleNavVisibility()
 			toggleHeaderVisibility()
 		},
 		onLeaveBack: () => {
+			if (isScrollToHashInProgress) return
 			toggleNavVisibility()
 			toggleHeaderVisibility()
 		},
 	})
-
-	/* 	ScrollTrigger.create({
-		trigger: section,
-		start: 'top-=100px top',
-		end: 'bottom center',
-		onEnterBack: () => {
-			toggleHeaderVisibility(true)
-		},
-		onEnter: () => {
-			toggleHeaderVisibility(true)
-		},
-		onLeave: () => {
-			toggleHeaderVisibility()
-		},
-		onLeaveBack: () => {
-			toggleHeaderVisibility()
-		},
-	}) */
 
 	items.classList.add('show')
 }

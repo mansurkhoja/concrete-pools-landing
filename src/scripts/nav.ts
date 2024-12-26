@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { bodyScroll } from './app'
 import { getViewportDimensions } from './utils'
+import { toggleHeaderVisibility } from './header'
 
 const nav = document.querySelector('.nav') as HTMLElement
 const toggle = nav.querySelector('.nav__toggle') as HTMLElement
@@ -148,6 +149,10 @@ export default () => {
 			})
 			setActiveLink(link)
 			toggleNavExpand()
+			if (section.classList.contains('full')) {
+				toggleNavVisibility(true)
+				toggleHeaderVisibility(true)
+			}
 		})
 
 		ScrollTrigger.create({
