@@ -3,15 +3,40 @@ import { bodyScroll } from './app'
 const modalShowName = 'data-modal-show'
 const modalHideName = 'data-modal-hide'
 
-const elShowButtons = document.querySelectorAll(
+const showButtons = document.querySelectorAll(
 	`[${modalShowName}]`
 ) as NodeListOf<HTMLElement>
-const elHideButtons = document.querySelectorAll(
+const hideButtons = document.querySelectorAll(
 	`[${modalHideName}]`
 ) as NodeListOf<HTMLElement>
 
 let activeModal: HTMLElement | null
 let tl: gsap.core.Timeline
+
+export const show = (id: string | null) => {
+	if (id) {
+		activeModal = document.getElementById(id)
+		if (activeModal) {
+			bodyScroll.stop()
+			activeModal.classList.remove('d-none')
+			let container = activeModal.querySelector('.modal__container')
+			tl = gsap.effects.modal(activeModal, container)
+			tl.play()
+		}
+	}
+}
+
+const hide = (id: string | null) => {
+	tl.timeScale(2)
+		.reverse()
+		.eventCallback('onReverseComplete', () => {
+			if (activeModal) {
+				activeModal.querySelector('.modal__inner')?.scroll(0, 0)
+			}
+			bodyScroll.start()
+			show(id)
+		})
+}
 
 export default () => {
 	gsap.registerEffect({
@@ -31,38 +56,17 @@ export default () => {
 		extendTimeline: true,
 	})
 
-	elShowButtons.forEach(button => {
+	showButtons.forEach(button => {
 		const id = button.getAttribute(modalShowName)
 		button.addEventListener('click', () => {
 			show(id)
 		})
 	})
 
-	elHideButtons.forEach(button => {
+	hideButtons.forEach(button => {
 		const id = button.getAttribute(modalHideName)
 		button.addEventListener('click', () => {
 			hide(id)
 		})
 	})
-}
-
-export const show = (id: string | null) => {
-	if (id) {
-		bodyScroll.stop()
-		activeModal = document.getElementById(id)!
-		activeModal.classList.remove('d-none')
-		let container = activeModal.querySelector('.modal__container')
-		tl = gsap.effects.modal(activeModal, container)
-		tl.play()
-	}
-}
-
-const hide = (id: string | null) => {
-	tl.timeScale(2)
-		.reverse()
-		.eventCallback('onReverseComplete', () => {
-			activeModal?.querySelector('.modal__inner')?.scroll(0, 0)
-			bodyScroll.start()
-			show(id)
-		})
 }

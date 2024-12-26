@@ -6,8 +6,10 @@ import { isTouch } from './utils'
 import lazyImage from './lazyImage'
 // import header from './header'
 import nav from './nav'
+import modal from './modal'
 import intro from './intro'
 import management from './management'
+import model from './model'
 
 export let bodyScroll: Lenis
 
@@ -45,7 +47,11 @@ export default () => {
 
 	nav()
 
+	modal()
+
 	intro()
 
 	management()
+
+	model()
 }
