@@ -1,0 +1,69 @@
+<div class="modal fixed d-none" id="form" data-lenis-prevent>
+	<div class="modal__container">
+		<button class="modal__close flex-center" aria-label="Закрыть модальное окно" data-modal-hide>
+			<svg class="icon">
+				<use xlink:href="/sprite.svg#x"></use>
+			</svg>
+		</button>
+		<div class="modal__inner">
+			<div class="form">
+				<div class="form__container">
+					<div class="form__title">
+						Оставьте свои контакты и мы вам перезвоним
+					</div>
+					<form action="/backend/application/" class="form__inner">
+						<div class="form__item o-hidden">
+							<input class="form__input" type="text" name="name" id="name" autocomplete="name">
+							<label for="name" class="form__label p-none">
+								Ваше имя <span>*</span>
+							</label>
+						</div>
+						<div class="form__item o-hidden">
+							<input class="form__input" type="tel" name="phone" id="tel" autocomplete="tel">
+							<label for="tel" class="form__label p-none">
+								Номер телефона <span>*</span>
+							</label>
+						</div>
+						<div class="form__item o-hidden">
+							<textarea class="form__input form__input--area" name="message" id="comment" rows="1" cols="1"></textarea>
+							<label for="comment" class="form__label p-none">
+								Комментарий
+							</label>
+						</div>
+						<div class="form__item form__item--btn">
+							<button class="form__btn btn o-hidden" type="submit">
+								<div class="btn__container flex-center">
+									<div class="btn__items flex-center">
+										<div class="btn__item">
+											Отправить
+										</div>
+										<div class="btn__item">
+											Отправить
+										</div>
+									</div>
+								</div>
+								<div class="btn__container btn__container--icon flex-center">
+									<div class="btn__items flex-center">
+										<svg class="btn__item icon">
+											<use xlink:href="/sprite.svg#arrow"></use>
+										</svg>
+										<svg class="btn__item icon">
+											<use xlink:href="/sprite.svg#arrow"></use>
+										</svg>
+									</div>
+								</div>
+							</button>
+						</div>
+					</form>
+					<p class="form__info">
+						Нажимая кнопку “Отправить” вы соглашаетесь <br> <a href="http://x.com" target="_blank"
+							rel="noopener noreferrer">с условиями Политики конфиденциальности</a>
+					</p>
+				</div>
+				<div class="form__success hide absolute flex-center">
+					Отправлено
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -23,6 +23,8 @@ $color-subtitle: rgba($color-dark-main, 0.7);
 $color-body-background: $color-white-main;
 $color-modal-background: rgba(#000, 0.4);
 $color-loader-background: #cbe0ff;
+$color-input-background: #f5f5f5;
+$color-label: #c7c7c7;
 
 // easing
 $easing-linear: cubic-bezier(0, 0, 1, 1);
@@ -62,6 +64,7 @@ $size-nav-toggle: 66px;
 $size-nav-toggle-tablet-mini: 80px;
 $size-btn: 39px;
 $size-btn-desktop: $size-cursor + 1px;
+$size-input-min-height: 60px;
 
 // transitions
 $transition-duration: (
@@ -82,3 +85,5 @@ $position-nav-bottom-tablet-mini: 20px;
 $padding: 16px;
 $padding-tablet: 20px;
 $padding-top-section: 250px;
+$padding-block-input: 16px;
+$padding-input-inline: 19px;

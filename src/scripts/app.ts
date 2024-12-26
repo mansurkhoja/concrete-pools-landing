@@ -7,6 +7,7 @@ import lazyImage from './lazyImage'
 // import header from './header'
 import nav from './nav'
 import modal from './modal'
+import form from './form'
 import intro from './intro'
 import management from './management'
 import model from './model'
@@ -48,6 +49,8 @@ export default () => {
 	nav()
 
 	modal()
+
+	form()
 
 	intro()
 
