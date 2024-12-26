@@ -30,6 +30,11 @@ const tlExpand = gsap.timeline({
 	paused: true,
 })
 
+const headerHeight = () => {
+	const { isDesktop } = getViewportDimensions()
+	return isDesktop ? 90 : 70
+}
+
 const updateTlExpand = () => {
 	const { isMobile } = getViewportDimensions()
 
@@ -139,7 +144,7 @@ export default () => {
 					isScrollToHashInProgress = false
 				},
 				lock: true,
-				offset,
+				offset: offset > 0 ? offset - headerHeight() : 0,
 			})
 			setActiveLink(link)
 			toggleNavExpand()

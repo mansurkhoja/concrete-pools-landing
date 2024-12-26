@@ -34,8 +34,8 @@ let isTlTogglePhoneCreated = false
 let slider: Slider
 
 const updateTlTogglePhone = () => {
-	const { isTablet } = getViewportDimensions()
-	if (isTablet) {
+	const { isTabletMini } = getViewportDimensions()
+	if (isTabletMini) {
 		if (!isTlTogglePhoneCreated) {
 			tlTogglePhone
 				.fromTo(phone, { autoAlpha: 0, scale: 0.9 }, { autoAlpha: 1, scale: 1 })

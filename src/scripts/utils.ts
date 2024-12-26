@@ -2,7 +2,10 @@ export const isTouch = typeof window.ontouchstart !== 'undefined'
 
 export const loadVideo = (
 	video: HTMLVideoElement,
-	eventType: 'canplaythrough' | 'loadedmetadata' | 'loadeddata' = 'loadedmetadata'
+	eventType:
+		| 'canplaythrough'
+		| 'loadedmetadata'
+		| 'loadeddata' = 'loadedmetadata'
 ): Promise<HTMLVideoElement> => {
 	return new Promise<HTMLVideoElement>((resolve, reject) => {
 		video.load()
@@ -24,6 +27,8 @@ export const loadVideo = (
 export const getViewportDimensions = () => {
 	return {
 		isMobile: window.innerWidth < 720,
-		isTablet: window.innerWidth < 1024,
+		isTabletMini: window.innerWidth < 1024,
+		// isTablet: window.innerWidth < 1280,
+		isDesktop: window.innerWidth >= 1280,
 	}
 }
