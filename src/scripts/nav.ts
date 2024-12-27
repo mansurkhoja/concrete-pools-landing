@@ -120,6 +120,17 @@ const scrollToActiveLink = (duration = 0.4) => {
 	}
 }
 
+const toggleNavHeader = (isHide: boolean = true) => {
+	toggleNavVisibility(isHide)
+	toggleHeaderVisibility(isHide)
+}
+
+const onSectionFullAuto = (section: HTMLElement, isEnter: boolean = true) => {	
+	if (section.classList.contains('full--auto')) {
+		toggleNavHeader(isEnter)
+	}
+}
+
 export default () => {
 	updateTlExpand()
 	toggle.addEventListener('click', toggleNavExpand)
@@ -154,8 +165,7 @@ export default () => {
 			setActiveLink(link)
 			toggleNavExpand()
 			if (section.classList.contains('full')) {
-				toggleNavVisibility(true)
-				toggleHeaderVisibility(true)
+				toggleNavHeader()
 			}
 		})
 
@@ -168,17 +178,25 @@ export default () => {
 				if (isScrollToHashInProgress) return
 				setActiveLink(link)
 				scrollToActiveLink()
+				onSectionFullAuto(section)
 			},
 			onEnterBack: () => {
 				if (isScrollToHashInProgress) return
 				setActiveLink(link)
 				scrollToActiveLink()
+				onSectionFullAuto(section)
 			},
 			onLeaveBack: () => {
+				if (isScrollToHashInProgress) return
 				if (index == 0) {
 					setActiveLink(null)
 				}
+				onSectionFullAuto(section, false)
 			},
+			onLeave: () => {
+				if (isScrollToHashInProgress) return
+				onSectionFullAuto(section, false)
+			}
 		})
 	})
 
