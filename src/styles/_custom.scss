@@ -150,7 +150,7 @@
 
 .link {
   will-change: opacity;
-  opacity: 0.75;
+  opacity: var(--opacity, 0.75);
   transition: opacity map.get(var.$transition-duration, "default") var.$easing-linear;
 }
 

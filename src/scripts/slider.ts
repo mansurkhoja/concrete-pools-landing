@@ -202,7 +202,7 @@ export default class Slider {
 	}
 
 	private onShowComplete(): void {
-		this.animating = false
+		// this.animating = false
 
 		if (this.emitOnShown) {
 			this.emitOnShown()

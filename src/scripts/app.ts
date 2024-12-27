@@ -11,6 +11,7 @@ import form from './form'
 import intro from './intro'
 import management from './management'
 import model from './model'
+import life from './life'
 
 export let bodyScroll: Lenis
 
@@ -57,4 +58,6 @@ export default () => {
 	management()
 
 	model()
+
+	life()
 }
