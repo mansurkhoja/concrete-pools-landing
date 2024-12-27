@@ -8,6 +8,8 @@ interface SliderProps {
 	covers?: NodeListOf<HTMLElement>
 	voiceButton?: HTMLElement
 	playButton?: HTMLElement
+	prevButton?: HTMLElement
+	nextButton?: HTMLElement
 	slides: NodeListOf<HTMLElement>
 	videos: NodeListOf<HTMLVideoElement>
 	progress?: HTMLElement
@@ -28,6 +30,8 @@ export default class Slider {
 	private covers?: NodeListOf<HTMLElement>
 	private voiceButton?: HTMLElement
 	private playButton?: HTMLElement
+	private prevButton?: HTMLElement
+	private nextButton?: HTMLElement
 	private slides: NodeListOf<HTMLElement>
 	private videos: NodeListOf<HTMLVideoElement>
 	private progress?: HTMLElement
@@ -58,6 +62,8 @@ export default class Slider {
 		this.covers = props.covers
 		this.voiceButton = props.voiceButton
 		this.playButton = props.playButton
+		this.prevButton = props.prevButton
+		this.nextButton = props.nextButton
 		this.slides = props.slides
 		this.videos = props.videos
 		this.progress = props.progress
@@ -155,6 +161,20 @@ export default class Slider {
 					}
 					this.toggleButtonPlay()
 				}
+			})
+		}
+
+		if (this.prevButton) {
+			this.prevButton.addEventListener('click', () => {
+				this.change(
+					(this.currentIndex - 1 + this.slides.length) % this.slides.length
+				)
+			})
+		}
+
+		if (this.nextButton) {
+			this.nextButton.addEventListener('click', () => {
+				this.change()
 			})
 		}
 	}

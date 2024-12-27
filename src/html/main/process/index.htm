@@ -1,8 +1,156 @@
-<section class="process" id="process">
+<section class="process full" id="process">
 	<h2 class="subtitle">
 		Процесс
 	</h2>
 	<h3 class="title">
 		От котлована до сдачи
 	</h3>
+	<div class="process__inner o-hidden">
+		<div class="process__header">
+			<button class="process__call btn btn--light o-hidden" data-modal-show="form" data-from="процесс">
+				<div class="btn__container flex-center">
+					<div class="btn__items flex-center">
+						<div class="btn__item">
+							Консультация
+						</div>
+						<div class="btn__item">
+							Консультация
+						</div>
+					</div>
+				</div>
+				<div class="btn__container btn__container--icon flex-center">
+					<div class="btn__items flex-center">
+						<svg class="btn__item icon">
+							<use xlink:href="/sprite.svg#arrow"></use>
+						</svg>
+						<svg class="btn__item icon">
+							<use xlink:href="/sprite.svg#arrow"></use>
+						</svg>
+					</div>
+				</div>
+			</button>
+			<div class="process__title">
+				<p class="process__name absolute flex-center">
+					Устройство котлована 1
+				</p>
+				<p class="process__name absolute flex-center">
+					Устройство котлована 2
+				</p>
+				<p class="process__name absolute flex-center">
+					Устройство котлована 3
+				</p>
+				<p class="process__name absolute flex-center">
+					Устройство котлована 4
+				</p>
+			</div>
+			<button class="process__voice btn btn--light" aria-label="Кнопка вкл/выкл звук видео">
+				<div class="btn__container btn__container--icon flex-center">
+					<div class="btn__items flex-center">
+						<svg class="btn__item icon">
+							<use xlink:href="/sprite.svg#voice"></use>
+						</svg>
+						<svg class="btn__item icon">
+							<use xlink:href="/sprite.svg#voice"></use>
+						</svg>
+					</div>
+				</div>
+			</button>
+		</div>
+		<div class="process__slider absolute">
+			<div class="progress o-hidden">
+				<div class="progress__line absolute"></div>
+			</div>
+			<div class="process__slider-container absolute">
+				<div class="absolute o-hidden">
+					<div class="process__slide absolute">
+						<div class="process__cover absolute lazy">
+							<picture>
+								<source srcset="/src/assets/images/process/poster_1.webp" media="(orientation: landscape)">
+								<img alt="Постер к видео процессу" width="430" height="720"
+									src="/src/assets/images/process/poster_1_mob.webp" loading="lazy" class="p-none fit-cover">
+							</picture>
+						</div>
+						<video class="fit-cover" playsinline preload="none" muted>
+							<source src="/src/assets/videos/process/1.mp4" type="video/mp4" media="(orientation: landscape)">
+							<source src="/src/assets/videos/process/1_mob.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="absolute o-hidden">
+					<div class="process__slide absolute">
+						<div class="process__cover absolute lazy">
+							<picture>
+								<source srcset="/src/assets/images/process/poster_2.webp" media="(orientation: landscape)">
+								<img alt="Постер к видео процессу" width="430" height="720"
+									src="/src/assets/images/process/poster_2_mob.webp" loading="lazy" class="p-none fit-cover">
+							</picture>
+						</div>
+						<video class="fit-cover" playsinline preload="none" muted>
+							<source src="/src/assets/videos/process/2.mp4" type="video/mp4" media="(orientation: landscape)">
+							<source src="/src/assets/videos/process/2_mob.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="absolute o-hidden">
+					<div class="process__slide absolute">
+						<div class="process__cover absolute lazy">
+							<picture>
+								<source srcset="/src/assets/images/process/poster_3.webp" media="(orientation: landscape)">
+								<img alt="Постер к видео процессу" width="430" height="720"
+									src="/src/assets/images/process/poster_3_mob.webp" loading="lazy" class="p-none fit-cover">
+							</picture>
+						</div>
+						<video class="fit-cover" playsinline preload="none" muted>
+							<source src="/src/assets/videos/process/3.mp4" type="video/mp4" media="(orientation: landscape)">
+							<source src="/src/assets/videos/process/3_mob.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+				<div class="absolute o-hidden">
+					<div class="process__slide absolute">
+						<div class="process__cover absolute lazy">
+							<picture>
+								<source srcset="/src/assets/images/process/poster_4.webp" media="(orientation: landscape)">
+								<img alt="Постер к видео процессу" width="430" height="720"
+									src="/src/assets/images/process/poster_4_mob.webp" loading="lazy" class="p-none fit-cover">
+							</picture>
+						</div>
+						<video class="fit-cover" playsinline preload="none" muted>
+							<source src="/src/assets/videos/process/4.mp4" type="video/mp4" media="(orientation: landscape)">
+							<source src="/src/assets/videos/process/4_mob.mp4" type="video/mp4">
+						</video>
+					</div>
+				</div>
+			</div>
+			<button class="btn-prev absolute" aria-label="Пред видео"></button>
+			<button class="btn-next absolute" aria-label="След видео"></button>
+			<button class="btn-play flex-center" aria-label="Кнопка вкл/выкл видео">
+				<svg class="icon">
+					<use xlink:href="/sprite.svg#play"></use>
+				</svg>
+			</button>
+		</div>
+		<div class="process__footer">
+			<div class="process__buttons">
+				<button class="process__button link active" aria-label="Открыть видео 1">
+					01
+				</button>
+				<button class="process__button link" aria-label="Открыть видео 2">
+					02
+				</button>
+				<button class="process__button link" aria-label="Открыть видео 3">
+					03
+				</button>
+				<button class="process__button link" aria-label="Открыть видео 4">
+					04
+				</button>
+			</div>
+			<div class="process__counter">
+				<span class="hide">01</span>
+				<span class="hide">02</span>
+				<span class="hide">03</span>
+				<span class="hide">04</span>
+			</div>
+		</div>
+	</div>
 </section>

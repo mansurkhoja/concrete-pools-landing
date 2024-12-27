@@ -12,6 +12,7 @@ import intro from './intro'
 import management from './management'
 import model from './model'
 import life from './life'
+import process from './process'
 
 export let bodyScroll: Lenis
 
@@ -60,4 +61,6 @@ export default () => {
 	model()
 
 	life()
+
+	process()
 }
