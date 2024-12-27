@@ -49,6 +49,14 @@
 		}
 	}
 
+	@media (max-width: 370px) {
+		&__call {
+			.btn__container--icon {
+				display: none;
+			}
+		}
+	}
+
 	@include media.tablet-mini {
 		&__links {
 			display: flex;
