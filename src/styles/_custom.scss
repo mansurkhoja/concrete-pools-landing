@@ -197,7 +197,7 @@
 [loading] {
   will-change: opacity;
   opacity: 0;
-  transition: opacity 0.2s var.$easing-sine-in-out;
+  transition: opacity 0.3s var.$easing-sine-in-out;
 
   &.loaded {
     opacity: 1;
