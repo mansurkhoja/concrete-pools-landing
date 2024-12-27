@@ -55,7 +55,7 @@ export default class imagesSlider {
 					.fromTo(
 						item,
 						{ autoAlpha: 0, scale: 1.2 },
-						{ autoAlpha: 1, scale: 1, ease: 'power2.out' }
+						{ autoAlpha: 1, scale: 1, ease: 'power1.in' }
 					)
 			)
 		})
@@ -161,11 +161,11 @@ export default class imagesSlider {
 			if (this.canPlay) {
 				this.playImage()
 			}
+			this.animating = false
 		})
 	}
 
 	private onChange(index: number): void {
-		this.animating = false
 		this.prevIndex = this.currentIndex
 		this.currentIndex = index
 

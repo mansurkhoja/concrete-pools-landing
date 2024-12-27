@@ -145,7 +145,9 @@ export default () => {
 					isScrollToHashInProgress = false
 				},
 				lock: true,
-				offset: offset > 0 ? offset - headerHeight() : 0,
+				offset: section.classList.contains('full')
+					? offset
+					: offset - headerHeight(),
 				lerp: 0.07,
 				duration: 1,
 			})

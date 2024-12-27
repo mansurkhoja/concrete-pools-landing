@@ -29,7 +29,7 @@ export default () => {
 		return () => ScrollTrigger.refresh()
 	})
 
-	bodyScroll = new Lenis({ lerp: 0.07 })
+	bodyScroll = new Lenis({ lerp: 0.07, duration: 2 })
 	bodyScroll.on('scroll', ScrollTrigger.update)
 	gsap.ticker.add(time => bodyScroll.raf(time * 1000))
 	gsap.ticker.lagSmoothing(0)
