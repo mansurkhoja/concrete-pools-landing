@@ -1,0 +1,107 @@
+@use "media";
+@use "var";
+@use "sass:map";
+
+$portfolio-item-width: 232px;
+$portfolio-item-width--tablet: 403px;
+
+.portfolio {
+	&__header {
+		margin-top: 40px;
+		text-align: center;
+
+		span,
+		.btn__container {
+			will-change: transform;
+			transition: transform 1.6s var.$easing-ease 0.2s;
+		}
+
+		span {
+			transform: translateY(-100%);
+		}
+
+		.btn__container {
+			transform: translateX(-95px) rotate(-45deg);
+		}
+	}
+
+	&__gallery {
+		padding: 60px 0 2vw;
+		will-change: opacity, clip-path;
+		clip-path: inset(0% 40% 0% 40%);
+		opacity: 0;
+		transition:
+			opacity 0.8s var.$easing-linear,
+			clip-path 0.8s var.$easing-ease-in-out;
+
+		&.active {
+			opacity: 1;
+			clip-path: inset(0);
+		}
+	}
+
+	&.entered {
+		.portfolio {
+			&__header {
+				span,
+				.btn__container {
+					transform: none;
+				}
+			}
+		}
+	}
+
+	&__container {
+		padding: 0 calc($portfolio-item-width / 4);
+		column-gap: 20px;
+	}
+
+	&__item {
+		position: relative;
+		width: $portfolio-item-width;
+		// clip-path: circle(0%);
+
+		&::after {
+			content: "";
+			display: block;
+			padding-top: 101.25%;
+		}
+	}
+
+	.gallery__item:nth-child(even) {
+		.portfolio__item {
+			&::after {
+				padding-top: 67.25%;
+			}
+		}
+	}
+
+	&__title {
+		font-size: 16vw;
+	}
+
+	@include media.tablet {
+		&__gallery {
+			padding-top: 120px;
+		}
+
+		&__container {
+			padding: 0 calc($portfolio-item-width--tablet / 4);
+			column-gap: 40px;
+		}
+
+		&__item {
+			width: $portfolio-item-width--tablet;
+		}
+	}
+
+	@include media.desktop {
+		&__gallery {
+			padding-bottom: 25px;
+		}
+		
+		&__title {
+			font-size: 205px;
+		}
+	}
+}

@@ -113,6 +113,10 @@ $title-scroll-end: 1000px;
 				padding-top: 120.4%;
 			}
 		}
+
+		img {
+			vertical-align: top;
+		}
 	}
 
 	@include media.tablet-mini {
