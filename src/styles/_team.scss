@@ -22,7 +22,7 @@
 		position: relative;
 
 		&.active {
-			color: #fff;
+			color: var.$color-white-main;
 			transition-delay: 0s;
 		}
 	}
