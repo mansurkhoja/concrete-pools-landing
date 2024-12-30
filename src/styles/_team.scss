@@ -1,0 +1,187 @@
+@use "media";
+@use "var";
+@use "sass:map";
+
+.team {
+	&__inner {
+		margin-top: 70px;
+		position: relative;
+	}
+
+	&__item {
+		display: flex;
+		padding: 16px;
+		min-height: 90px;
+		will-change: color, opacity, border-color;
+		transition:
+			color map.get(var.$transition-duration, "show/hide") var.$easing-ease 0.2s,
+			opacity map.get(var.$transition-duration, "show/hide") * 2 var.$easing-linear 0.2s,
+			border-color map.get(var.$transition-duration, "show/hide") * 2 var.$easing-ease
+				map.get(var.$transition-duration, "show/hide") * 2;
+		border-bottom: 1px solid rgba($color: var.$color-dark-main, $alpha: 0.24);
+		position: relative;
+
+		&.active {
+			color: #fff;
+			transition-delay: 0s;
+		}
+	}
+
+	&__img {
+		width: 26px;
+		height: 26px;
+		flex-shrink: 0;
+		border-radius: 50%;
+		margin-top: 4px;
+	}
+
+	&__info {
+		padding-left: 16px;
+	}
+
+	&__name {
+		font-size: 18px;
+		padding-bottom: 5px;
+	}
+
+	&__role {
+		font-size: 14px;
+		opacity: 0.75;
+	}
+
+	&__avatars {
+		user-select: none;
+		z-index: 66;
+		backface-visibility: hidden;
+		max-width: 200px;
+		max-height: 240px;
+		width: 31vh;
+		height: 40vh;
+	}
+
+	&__avatar {
+		z-index: 1;
+		will-change: opacity, transform;
+		opacity: 0;
+		transform: scale(0.8);
+		transition:
+			opacity map.get(var.$transition-duration, "show/hide") var.$easing-linear,
+			transform map.get(var.$transition-duration, "show/hide") * 1.5 var.$easing-ease-in-out;
+
+		&.active {
+			opacity: 1;
+			transform: scale(1);
+			transition-delay: 0s;
+			z-index: 0;
+		}
+	}
+
+	/* &__avatar {
+		z-index: 0;
+		will-change: opacity, clip-path, transform;
+		opacity: 0;
+		clip-path: inset(100% 0% 0% 0%);
+		transform: scale(0.9);
+		transform-origin: bottom;
+		transition-duration: map.get(var.$transition-duration, "show/hide");
+		transition-property: opacity, clip-path, transform;
+		transition-timing-function: var.$easing-ease-in-out;
+		// transition:
+		// 	opacity map.get(var.$transition-duration, "show/hide") var.$easing-ease-in-out,
+		// 	clip-path map.get(var.$transition-duration, "show/hide") var.$easing-ease-in-out,
+		// 	transform map.get(var.$transition-duration, "show/hide") var.$easing-ease-in-out;
+
+		&.active {
+			clip-path: inset(0% 0% 0% 0%);
+			opacity: 1;
+			transform: scale(1);
+		}
+	} */
+
+	&__bg {
+		background-color: var.$color-blue-main;
+		height: 100%;
+		z-index: -1;
+	}
+
+	@include media.tablet-mini {
+		&__inner {
+			margin-top: 90px;
+		}
+
+		&__item {
+			align-items: center;
+		}
+
+		&__img {
+			margin-top: 0;
+		}
+
+		&__info {
+			display: flex;
+			align-items: center;
+			flex-grow: 1;
+		}
+
+		&__name {
+			font-size: 20px;
+			padding-bottom: 0;
+			flex-basis: 30%;
+		}
+
+		&__role {
+			font-size: 16px;
+			padding-left: 16px;
+		}
+
+		&__avatars {
+			width: 45vh;
+			height: 54vh;
+			max-width: 400px;
+			max-height: 480px;
+		}
+	}
+
+	@include media.desktop {
+		&__inner {
+			margin-top: 120px;
+		}
+
+		&__item {
+			padding: 20px;
+			min-height: 112px;
+		}
+
+		&__image {
+			width: 32px;
+			height: 32px;
+		}
+
+		&__info {
+			padding-left: 20px;
+			max-width: 1300px;
+		}
+
+		&__name {
+			font-size: 24px;
+		}
+
+		&__role {
+			font-size: 20px;
+			padding-left: 20px;
+		}
+	}
+
+	&:not(.entered) {
+		.team {
+			&__list {
+				pointer-events: none;
+			}
+
+			&__item {
+				border-bottom-color: transparent;
+				opacity: 0;
+			}
+		}
+	}
+}

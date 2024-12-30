@@ -69,4 +69,10 @@ export default () => {
 	portfolio()
 	
 	gallery()
+
+	if (isTouch) {
+		import('./teamTouch').then(team => team.default())
+	} else {
+		import('./team').then(team => team.default())
+	}
 }
