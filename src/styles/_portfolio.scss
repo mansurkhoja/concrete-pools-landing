@@ -28,7 +28,7 @@ $portfolio-item-width--tablet: 403px;
 	&__gallery {
 		padding: 60px 0 2vw;
 		will-change: opacity, clip-path;
-		clip-path: inset(0% 40% 0% 40%);
+		clip-path: inset(40% 0% 40% 0%);
 		opacity: 0;
 		transition:
 			opacity 0.8s var.$easing-linear,

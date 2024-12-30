@@ -15,6 +15,7 @@ import life from './life'
 import process from './process'
 import portfolio from './portfolio'
 import gallery from './gallery'
+import reviews from './reviews'
 
 export let bodyScroll: Lenis
 
@@ -32,7 +33,7 @@ export default () => {
 		return () => ScrollTrigger.refresh()
 	})
 
-	bodyScroll = new Lenis({ lerp: 0.07 })
+	bodyScroll = new Lenis({ lerp: 0.05 })
 	bodyScroll.on('scroll', ScrollTrigger.update)
 	gsap.ticker.add(time => bodyScroll.raf(time * 1000))
 	gsap.ticker.lagSmoothing(0)
@@ -75,4 +76,9 @@ export default () => {
 	} else {
 		import('./team').then(team => team.default())
 	}
+
+	reviews()
+
+	console.log(bodyScroll);
+	
 }

@@ -406,13 +406,14 @@
     font-weight: 400;
     line-height: 1;
     white-space: nowrap;
-    will-change: transform;
-    transition: transform 1s var.$easing-ease-in-out;
+    will-change: clip-path;
+    clip-path: inset(0% 100% 0% 0%);
+    transition: clip-path 2s var.$easing-sine-in-out 0.2s;
   }
 
-  &:not(.active) {
+  &.active {
     .gallery__text {
-      transform: translateY(100%);
+      clip-path: inset(0% 0% 0% 0%);
     }
   }
 }
