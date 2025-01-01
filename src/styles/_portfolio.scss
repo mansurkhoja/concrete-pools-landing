@@ -31,8 +31,8 @@ $portfolio-item-width--tablet: 403px;
 		clip-path: inset(40% 0% 40% 0%);
 		opacity: 0;
 		transition:
-			opacity 0.8s var.$easing-linear,
-			clip-path 0.8s var.$easing-ease-in-out;
+			opacity 0.4s var.$easing-linear,
+			clip-path 0.8s var.$easing-ease-in-out 0.1s;
 
 		&.active {
 			opacity: 1;
@@ -99,7 +99,7 @@ $portfolio-item-width--tablet: 403px;
 		&__gallery {
 			padding-bottom: 25px;
 		}
-		
+
 		&__title {
 			font-size: 205px;
 		}

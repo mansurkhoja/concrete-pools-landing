@@ -1,0 +1,32 @@
+@use "media";
+@use "var";
+@use "sass:map";
+@use "sass:math";
+
+.contacts {
+	&__inner {
+		padding: 60px var.$padding 100px;
+
+		&.active .contacts__animation {
+			clip-path: inset(0% 0% 0% 0%);
+		}
+	}
+
+	&__animation {
+		will-change: clip-path;
+		clip-path: inset(0% 0% 100% 0%);
+		transition: clip-path 0.8s var.$easing-ease-in-out 0.2s;
+	}
+
+	@include media.tablet-mini {
+		&__inner {
+			padding-bottom: 120px;
+		}
+	}
+
+	@include media.desktop {
+		&__inner {
+			padding: 70px var.$padding-tablet 250px;
+		}
+	}
+}

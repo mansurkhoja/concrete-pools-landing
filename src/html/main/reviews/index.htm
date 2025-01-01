@@ -117,7 +117,28 @@
 						></video>
 					</div>
 					<div class="reviews__cover lazy absolute">
-						<img alt="Постер к видео отзыву" width="264" height="291" src="/src/assets/images/parallax/2.webp" loading="lazy" class="p-none fit-cover">
+						<picture>
+							<source
+								media="(min-width: 1280px)"
+								srcset="/src/assets/images/reviews/poster_1.jpg 1x, /src/assets/images/reviews/poster_1_2x.jpg 2x"
+							>
+							<source
+								media="(min-width: 1024px)"
+								srcset="/src/assets/images/reviews/poster_1_tab.jpg 1x, /src/assets/images/reviews/poster_1_tab_2x.jpg 2x"
+							>
+							<source
+								media="(max-width: 1024px)"
+								srcset="/src/assets/images/reviews/poster_1_mob.jpg 1x, /src/assets/images/reviews/poster_1_mob_2x.jpg 2x"
+							>
+							<img
+								class="p-none fit-cover"
+								loading="lazy"
+								alt="Постер к видео отзыву"
+								src="/src/assets/images/reviews/poster_1_mob.jpg"
+								width="230"
+								height="320"
+							>
+						</picture>
 					</div>
 					<button
 						class="reviews__btn-play btn-play flex-center"

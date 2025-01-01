@@ -46,7 +46,7 @@ export default () => {
 		ScrollTrigger.create({
 			trigger: gallery,
 			once: true,
-			start: 'top-=125px center',
+			start: '-=125px center',
 			// start: 'top center',
 			toggleClass: 'active',
 		})

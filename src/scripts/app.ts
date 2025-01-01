@@ -16,6 +16,7 @@ import process from './process'
 import portfolio from './portfolio'
 import gallery from './gallery'
 import reviews from './reviews'
+import contacts from './contacts'
 
 export let bodyScroll: Lenis
 
@@ -79,6 +80,5 @@ export default () => {
 
 	reviews()
 
-	console.log(bodyScroll);
-	
+	contacts()
 }
