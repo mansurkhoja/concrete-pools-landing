@@ -12,7 +12,7 @@ $footer-inner-padding-top: 64px;
 	&:not(.active) {
 		.footer__item {
 			opacity: 0;
-			transform: translateY($footer-inner-padding-top);
+			transform: translateY($footer-inner-padding-top + 40);
 		}
 	}
 
@@ -35,7 +35,7 @@ $footer-inner-padding-top: 64px;
 		font-size: 16px;
 		will-change: opacity, transform;
 		transition:
-			opacity 0.2s var.$easing-linear,
+			opacity 0.4s var.$easing-linear,
 			transform 2s var.$easing-back-out;
 
 		&:nth-child(2) {
