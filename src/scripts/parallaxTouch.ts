@@ -17,7 +17,7 @@ export default () => {
 			paused: true,
 			// defaults: { ease: 'expoScale(0.5,7,none)' },
 			// defaults: { duration: 0.8, delay: 0.2 },
-			defaults: { ease:'power1.out' }
+			defaults: { ease:'power1.out', delay: 0.1 }
 		})
 		const initialClipPath = getClipPath(index)
 		const finalClipPath = 'inset(0% 0% 0% 0%)'
