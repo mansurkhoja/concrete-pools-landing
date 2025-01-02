@@ -17,7 +17,7 @@ export default () => {
 			paused: true,
 			// defaults: { ease: 'expoScale(0.5,7,none)' },
 			// defaults: { duration: 0.8, delay: 0.2 },
-			defaults: { ease:'power1.out', delay: 0.1 }
+			defaults: { ease: 'power1.out' },
 		})
 		const initialClipPath = getClipPath(index)
 		const finalClipPath = 'inset(0% 0% 0% 0%)'
@@ -30,7 +30,7 @@ export default () => {
 
 		ScrollTrigger.create({
 			trigger: parallax,
-			start: 'top bottom',
+			start: '+=30px bottom',
 			end: 'bottom top',
 			once: true,
 			onEnter: () => {
