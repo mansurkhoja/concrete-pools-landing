@@ -172,6 +172,7 @@
 
 	@include media.tablet-mini {
 		bottom: var.$position-nav-bottom-tablet-mini;
+		padding: 0;
 
 		&--hide {
 			transform: translate(-50%, (var.$position-nav-bottom-tablet-mini + var.$size-nav-tablet-mini + 1px));

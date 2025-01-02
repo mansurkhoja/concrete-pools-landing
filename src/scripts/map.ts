@@ -72,7 +72,7 @@ const init = async () => {
 		opacity: 0,
 		display: 'none',
 		duration: 0.3,
-		delay: 0.2,
+		delay: 0.3,
 	})
 }
 

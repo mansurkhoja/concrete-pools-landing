@@ -9,6 +9,13 @@ $footer-inner-padding-top: 64px;
 	background-color: #f5f5f5;
 	padding-bottom: var.$position-nav-bottom + var.$size-nav;
 
+	&:not(.active) {
+		.footer__item {
+			opacity: 0;
+			transform: translateY($footer-inner-padding-top);
+		}
+	}
+
 	&__inner,
 	&__copyright {
 		padding: 0 var.$padding;
@@ -26,6 +33,10 @@ $footer-inner-padding-top: 64px;
 		align-items: flex-start;
 		max-width: 455px;
 		font-size: 16px;
+		will-change: opacity, transform;
+		transition:
+			opacity 0.2s var.$easing-linear,
+			transform 2s var.$easing-back-out;
 
 		&:nth-child(2) {
 			font-size: 28px;
@@ -43,16 +54,6 @@ $footer-inner-padding-top: 64px;
 
 	&__text {
 		margin-bottom: 6px;
-	}
-
-	&__link {
-		color: var.$color-blue-main;
-		border-bottom: 1px solid var.$color-blue-main;
-
-		&--tel {
-			border-bottom: 0;
-			color: var.$color-title;
-		}
 	}
 
 	&__schedule {
@@ -168,6 +169,10 @@ $footer-inner-padding-top: 64px;
 	}
 
 	&__links {
+		display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+		row-gap: 10px;
 		position: absolute;
 		left: var.$padding;
 		bottom: 20px;
@@ -190,7 +195,8 @@ $footer-inner-padding-top: 64px;
 }
 
 .marker {
-	width: 38px;
+	// width: 38px;
+	width: 30px;
 	box-sizing: border-box;
 }
 
