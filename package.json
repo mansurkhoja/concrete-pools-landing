@@ -11,6 +11,7 @@
     "preview": "vite preview --port 9993 --host"
   },
   "devDependencies": {
+    "@yandex/ymaps3-types": "^1.0.15542062",
     "autoprefixer": "^10.4.20",
     "htmlhint": "^1.1.4",
     "postcss": "^8.4.49",

@@ -17,6 +17,7 @@ import portfolio from './portfolio'
 import gallery from './gallery'
 import reviews from './reviews'
 import contacts from './contacts'
+import map from './map'
 
 export let bodyScroll: Lenis
 
@@ -81,4 +82,6 @@ export default () => {
 	reviews()
 
 	contacts()
+
+	map()
 }

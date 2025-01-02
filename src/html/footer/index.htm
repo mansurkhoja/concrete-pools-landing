@@ -1,2 +1,121 @@
 <footer class="footer">
+	<div class="footer__inner">
+		<div class="footer__item">
+			<div class="footer__img lazy">
+				<picture>
+					<source
+						media="(min-width: 1280px)"
+						srcset="/src/assets/images/footer/1.jpg 1x, /src/assets/images/footer/1_2x.jpg 2x"
+					>
+					<source
+						media="(max-width: 1279px)"
+						srcset="/src/assets/images/footer/1_mob.jpg 1x, /src/assets/images/footer/1_mob_2x.jpg 2x"
+					>
+					<img
+						alt="Footer image"
+						width="320"
+						height="320"
+						class="fit-cover"
+						loading="lazy"
+						src="/src/assets/images/footer/1_mob.jpg"
+					>
+				</picture>
+			</div>
+			<p class="footer__text">
+				Россия, Московская область, Красногорский район, Ильинское сельское поселение, Новорижское шоссе, 27-й км (10 км от МКАД), Садовый центр Балтия Гарден, Центр Бассейнов
+			</p>
+			<a class="footer__link"
+				href="https://yandex.ru/maps/-/CDhIM4LP"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Открыть на карте
+			</a>
+			<div class="footer__schedule">
+				Пн-Пт 8:00 — 22:00
+			</div>
+		</div>
+		<div class="footer__item">
+			<div class="footer__media">
+				<a class="btn btn--active" href="http://t.me" target="_blank" rel="noopener noreferrer"
+					aria-label="Открыть Telegram">
+					<div class="btn__container btn__container--icon flex-center">
+						<div class="btn__items flex-center">
+							<svg class="btn__item icon">
+								<use xlink:href="/sprite.svg#tg"></use>
+							</svg>
+							<svg class="btn__item icon">
+								<use xlink:href="/sprite.svg#tg"></use>
+							</svg>
+						</div>
+					</div>
+				</a>
+				<a class="btn btn--active" href="http://t.me" target="_blank" rel="noopener noreferrer"
+					aria-label="Открыть WhatsApp">
+					<div class="btn__container btn__container--icon flex-center">
+						<div class="btn__items flex-center">
+							<svg class="btn__item icon">
+								<use xlink:href="/sprite.svg#wa"></use>
+							</svg>
+							<svg class="btn__item icon">
+								<use xlink:href="/sprite.svg#wa"></use>
+							</svg>
+						</div>
+					</div>
+				</a>
+			</div>
+			<a class="footer__link" href="mailto:mail@centr-bassein.ru">
+				mail@centr-bassein.ru
+			</a>
+			<a class="footer__link footer__link--tel" href="tel:+79269659259">
+				+7 926 965-9259
+			</a>
+		</div>
+	</div>
+	<div class="footer__map">
+		<div class="map absolute" id="map">
+			<div class="map__loader absolute flex-center">
+				Загрузка карты
+			</div>
+			<div class="map__inner absolute"></div>
+			<div class="map__links">
+				<a class="btn btn--active o-hidden" href="yandexnavi://maps/-/CDhIM4LP" target="_blank" rel="noopener noreferrer">
+					<div class="btn__container flex-center">
+						<div class="btn__items flex-center">
+							<div class="btn__item">
+								Открыть в навигаторе
+							</div>
+							<div class="btn__item">
+								Открыть в навигаторе
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="footer__copyright">
+		<p>Copyright © 2016-2024 «Центр Бассейнов»</p>
+		<a href="http://artica.ru" target="_blank" rel="noopener noreferrer">
+			Разработка сайта - &nbsp;
+			<svg width="49" height="10" viewBox="0 0 88 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M50.9359 5.99719L49 6.00195L49.0293 17.7535L50.9651 17.7487L50.9359 5.99719Z" fill="#8E9B9B"></path>
+				<path
+					d="M60.9193 5.91994C59.3263 5.92384 57.8293 6.54406 56.7056 7.66704C55.582 8.78945 54.9648 10.2799 54.9688 11.8639C54.9727 13.4474 55.5973 14.9347 56.7265 16.0522C57.8557 17.1691 59.3558 17.7819 60.9489 17.778C62.6835 17.7737 64.3218 17.021 65.4553 15.7105L64.0275 14.8707C63.2075 15.7006 62.1143 16.1591 60.9448 16.162C58.5521 16.1679 56.601 14.2377 56.5951 11.8599C56.5892 9.48157 58.5306 7.54232 60.9234 7.53645C62.0928 7.53356 63.1883 7.98616 64.0124 8.81262L65.436 7.96581C64.296 6.66032 62.654 5.91566 60.9193 5.91994Z"
+					fill="#8E9B9B"></path>
+				<path
+					d="M67.1719 17.4175L69.4976 17.4118L77.5041 3.96421L77.5521 3.88374L77.5999 3.96397L85.6738 17.372L87.999 17.3663L77.5424 0L67.1719 17.4175Z"
+					fill="#8E9B9B"></path>
+				<path
+					d="M28.0472 12.4987L28.1228 12.4825C29.6555 12.1523 30.7642 10.7837 30.7603 9.22819C30.7558 7.39686 29.2535 5.91053 27.4111 5.91505L19.9375 5.93345L20.9839 7.61634L27.456 7.60041C28.3606 7.59819 29.0979 8.34052 29.1002 9.25563C29.1025 10.1707 28.3688 10.9167 27.4642 10.9189L27.1283 10.9197L26.034 10.9224L26.0382 12.6164L26.0383 12.6592L29.0512 17.6626L31.1533 17.6574L28.0869 12.5647L28.0472 12.4987Z"
+					fill="#8E9B9B"></path>
+				<path
+					d="M34.6172 5.89627L34.6216 7.66949L38.717 7.6594L38.7726 7.65926L38.7727 7.71452L38.7974 17.6376L40.7327 17.6328L40.708 7.70976L40.7079 7.6545L40.7641 7.65436L44.8594 7.64431L44.855 5.87109L34.6172 5.89627Z"
+					fill="#8E9B9B"></path>
+				<path
+					d="M0 17.5826L2.32514 17.5768L10.3323 4.12925L10.3802 4.04878L10.4274 4.12901L18.5014 17.5371L20.8265 17.5314L10.3705 0.165039L0 17.5826Z"
+					fill="#8E9B9B"></path>
+			</svg>
+		</a>
+	</div>
 </footer>

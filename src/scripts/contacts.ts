@@ -8,6 +8,5 @@ export default () => {
 		start: '-=125px center',
 		toggleClass: 'active',
 		once: true,
-		markers: true,
 	})
 }
