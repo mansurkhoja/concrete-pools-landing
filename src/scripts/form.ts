@@ -9,7 +9,8 @@ const dataFromButtons = document.querySelectorAll(
 
 const handleSubmit = (e: SubmitEvent, block: HTMLElement): void => {
 	e.preventDefault()
-	block.classList.add('p-none')
+	block.classList.add('p-none', 'form--loading')
+	// block.classList.add('form--loading')
 
 	const form = e.target as HTMLFormElement
 	const formData = new FormData(form)
@@ -24,10 +25,11 @@ const handleSubmit = (e: SubmitEvent, block: HTMLElement): void => {
 			if (!response.ok) {
 				throw new Error(`Ошибка: ${response.status} ${response.statusText}`)
 			}
+			block.classList.remove('form--loading')
 			block.classList.add('form--submitted')
 		})
 		.catch((error: Error) => {
-			block.classList.remove('p-none')
+			block.classList.remove('p-none', 'form--loading')
 			alert(error.message)
 		})
 }

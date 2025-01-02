@@ -269,7 +269,15 @@
     }
   }
 
-  &__success {
+  &--loading {
+    .form__load {
+      opacity: 0.5;
+      visibility: visible;
+    }
+  }
+
+  &__success,
+  &__load {
     background-color: var.$color-body-background;
     z-index: 5;
     font-size: 32px;
