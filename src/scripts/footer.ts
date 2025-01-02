@@ -5,8 +5,8 @@ const footer = document.querySelector('footer')
 export default () => {
 	ScrollTrigger.create({
 		trigger: footer,
-		start: 'top bottom',
+		start: '+=100px bottom',
 		once: true,
-		toggleClass: 'active'
+		toggleClass: 'active',
 	})
 }
