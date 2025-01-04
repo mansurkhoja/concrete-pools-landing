@@ -175,7 +175,7 @@ $footer-inner-padding-top: 64px;
 		row-gap: 10px;
 		position: absolute;
 		left: var.$padding;
-		bottom: 20px;
+		bottom: 24px;
 
 		.btn {
 			color: #fff;
@@ -188,7 +188,6 @@ $footer-inner-padding-top: 64px;
 
 	@include media.tablet {
 		&__links {
-			bottom: 24px;
 			left: var.$padding-tablet;
 		}
 	}
