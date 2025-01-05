@@ -9,6 +9,8 @@
 
 		&.active .contacts__animation {
 			clip-path: inset(0% 0% 0% 0%);
+			opacity: 1;
+			transform: none;
 		}
 	}
 
@@ -18,9 +20,12 @@
 		transition: clip-path 0.8s var.$easing-ease-in-out 0.2s;
 
 		&.form__item {
-			clip-path: inset(0% 100% 0% 0%);
-			transition-delay: 0.4s;
-			transition-duration: 1.4s;
+			will-change: opacity, transform;
+			transition:
+				opacity 1s var.$easing-ease-in-out 0.3s,
+				transform 1s var.$easing-ease-in-out 0.3s;
+			opacity: 0;
+			transform: translateY(20px);
 		}
 	}
 

@@ -89,7 +89,7 @@ export default async () => {
 }
 
 export const onPreloadComplete = () => {
-	slider.show()
+	/* slider.show()
 
 	ScrollTrigger.create({
 		trigger: section,
@@ -117,5 +117,40 @@ export const onPreloadComplete = () => {
 		},
 	})
 
-	items.classList.add('show')
+	items.classList.add('show') */
+
+	ScrollTrigger.create({
+		trigger: section,
+		start: 'top bottom',
+		once: true,
+		onEnter: () => {
+			slider.show()
+			ScrollTrigger.create({
+				trigger: section,
+				start: 'center-=100px center',
+				end: 'bottom+=68px bottom',
+				onEnterBack: () => {
+					if (isScrollToHashInProgress) return
+					toggleNavVisibility(true)
+					toggleHeaderVisibility(true)
+				},
+				onEnter: () => {
+					if (isScrollToHashInProgress) return
+					toggleNavVisibility(true)
+					toggleHeaderVisibility(true)
+				},
+				onLeave: () => {
+					if (isScrollToHashInProgress) return
+					toggleNavVisibility()
+					toggleHeaderVisibility()
+				},
+				onLeaveBack: () => {
+					if (isScrollToHashInProgress) return
+					toggleNavVisibility()
+					toggleHeaderVisibility()
+				},
+			})
+			items.classList.add('show')
+		},
+	})
 }
