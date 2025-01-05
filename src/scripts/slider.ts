@@ -236,8 +236,6 @@ export default class Slider {
 		if (this.progress) {
 			this.progress.classList.add('progress--active')
 		}
-
-		this.toggleButtonPlay(false)
 	}
 
 	private startSlider(isToggleCanPlay: boolean = true): void {

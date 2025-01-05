@@ -400,7 +400,7 @@
   font-size: 40px;
   border-radius: 90px;
   backdrop-filter: blur(13px);
-  background-color: rgba(var.$color-button, 0.1);
+  // background-color: rgba(var.$color-button, 0.1);
   will-change: transform;
   transition: map.get(var.$transition, "onClickScale");
   top: calc(50% - 45px);
