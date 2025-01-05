@@ -44,8 +44,9 @@ export default () => {
 
 		ScrollTrigger.create({
 			trigger: item,
-			start: 'top center',
+			start: '-=30px center',
 			once: true,
+			markers: true,
 			onEnter: () => {
 				tls[index].play()
 			},
