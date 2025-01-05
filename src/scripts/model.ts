@@ -46,7 +46,6 @@ export default () => {
 			trigger: item,
 			start: '-=30px center',
 			once: true,
-			markers: true,
 			onEnter: () => {
 				tls[index].play()
 			},
