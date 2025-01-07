@@ -73,7 +73,6 @@
 		&.active {
 			opacity: 1;
 			transform: scale(1);
-			transition-delay: 0s;
 			z-index: 0;
 		}
 	}
@@ -104,6 +103,25 @@
 		background-color: var.$color-blue-main;
 		height: 100%;
 		z-index: -1;
+	}
+
+	&__gradient {
+		top: 50%;
+		right: 0;
+		min-width: 700px;
+		transform: translate(50%, -50%);
+	}
+
+	&.entered {
+		.team {
+			&__gradient {
+				opacity: 1;
+				visibility: visible;
+				transition:
+					opacity 2s var.$easing-linear,
+					visibility 1s;
+			}
+		}
 	}
 
 	@include media.tablet-mini {
