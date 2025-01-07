@@ -448,10 +448,15 @@
 .gradient-bg {
   position: absolute;
   background: var.$color-radial-gradient-main;
+  // background-color: red;
   pointer-events: none;
   z-index: -6;
-  min-width: var.sizeVH(200);
+  // min-width: var.sizeVH(100);
+  width: var.sizeVH(100);
+  min-width: 100vw;
+  will-change: visibility, opacity;
   visibility: hidden;
+  opacity: 0;
 
   &::after {
     content: "";

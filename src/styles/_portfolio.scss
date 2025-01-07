@@ -6,6 +6,15 @@ $portfolio-item-width: 232px;
 $portfolio-item-width--tablet: 403px;
 
 .portfolio {
+	position: relative;
+
+	&__gradient {
+		top: -25%;
+		left: 50%;
+		transform: translateX(-50%);
+		visibility: visible;
+	}
+
 	&__header {
 		margin-top: 40px;
 		text-align: center;
@@ -42,6 +51,13 @@ $portfolio-item-width--tablet: 403px;
 
 	&.entered {
 		.portfolio {
+			&__gradient {
+				opacity: 1;
+				visibility: visible;
+				transition:
+					opacity 1s var.$easing-linear,
+					visibility 1s;
+			}
 			&__header {
 				span,
 				.btn__container {
