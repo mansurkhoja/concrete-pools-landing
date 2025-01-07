@@ -13,6 +13,7 @@ $portfolio-item-width--tablet: 403px;
 		left: 50%;
 		transform: translateX(-50%);
 		visibility: visible;
+		z-index: 2;
 	}
 
 	&__header {
