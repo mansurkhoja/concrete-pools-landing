@@ -36,16 +36,11 @@ $portfolio-item-width--tablet: 403px;
 
 	&__gallery {
 		padding: 60px 0 2vw;
-		will-change: opacity, clip-path;
-		clip-path: inset(40% 0% 40% 0%);
-		opacity: 0;
-		transition:
-			opacity 0.4s var.$easing-linear,
-			clip-path 0.8s var.$easing-ease-in-out;
 
 		&.active {
-			opacity: 1;
-			clip-path: inset(0);
+			.portfolio__item {
+				clip-path: inset(0);
+			}
 		}
 	}
 
@@ -75,7 +70,9 @@ $portfolio-item-width--tablet: 403px;
 	&__item {
 		position: relative;
 		width: $portfolio-item-width;
-		// clip-path: circle(0%);
+		will-change: clip-path;
+		clip-path: inset(50% 0% 50% 0%);
+		transition: clip-path 0.8s var.$easing-ease-in-out;
 
 		&::after {
 			content: "";
