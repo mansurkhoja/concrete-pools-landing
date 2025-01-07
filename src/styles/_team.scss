@@ -55,8 +55,10 @@
 		backface-visibility: hidden;
 		max-width: 200px;
 		max-height: 240px;
-		width: 31vh;
-		height: 40vh;
+		width: var.sizeVH(30);
+		height: var.sizeVH(40);
+		width: var.sizeSVH(30);
+		height: var.sizeSVH(40);
 	}
 
 	&__avatar {
@@ -135,8 +137,10 @@
 		}
 
 		&__avatars {
-			width: 45vh;
-			height: 54vh;
+			width: var.sizeVH(45);
+			height: var.sizeVH(54);
+			width: var.sizeSVH(45);
+			height: var.sizeSVH(54);
 			max-width: 400px;
 			max-height: 480px;
 		}

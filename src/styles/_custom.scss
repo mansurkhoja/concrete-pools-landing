@@ -209,13 +209,6 @@
   margin: 0 auto 12px;
 }
 
-.entered {
-  .title,
-  .subtitle {
-    transform: scaleY(1);
-  }
-}
-
 .lazy {
   background-color: var.$color-loader-background;
 }
@@ -449,6 +442,28 @@
     .gallery__text {
       clip-path: inset(0% 0% 0% 0%);
     }
+  }
+}
+
+.gradient-bg {
+  position: absolute;
+  background: var.$color-radial-gradient-main;
+  pointer-events: none;
+  z-index: -6;
+  min-width: var.sizeVH(200);
+  visibility: hidden;
+
+  &::after {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.entered {
+  .title,
+  .subtitle {
+    transform: scaleY(1);
   }
 }
 
