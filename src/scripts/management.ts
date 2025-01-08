@@ -55,7 +55,7 @@ const updateTlTogglePhone = () => {
 }
 
 export const loadAssets = async () => {
-	await loadVideo(sliderVideos[0], 'loadeddata')
+	await loadVideo(sliderVideos[0], 'canplaythrough')
 }
 
 export default async () => {

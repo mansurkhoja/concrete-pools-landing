@@ -2,10 +2,7 @@ export const isTouch = typeof window.ontouchstart !== 'undefined'
 
 export const loadVideo = (
 	video: HTMLVideoElement,
-	eventType:
-		| 'canplaythrough'
-		| 'loadedmetadata'
-		| 'loadeddata' = 'loadedmetadata'
+	eventType: 'loadedmetadata' | 'loadeddata' | 'canplaythrough' = 'loadeddata'
 ): Promise<HTMLVideoElement> => {
 	return new Promise<HTMLVideoElement>((resolve, reject) => {
 		video.load()
