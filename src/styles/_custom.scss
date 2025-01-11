@@ -576,6 +576,13 @@
   }
 }
 
+@include media.tablet {
+  .title,
+  .subtitle {
+    padding: 0 var.$padding-tablet;
+  }
+}
+
 @include media.desktop {
   .btn {
     font-size: 16px;
