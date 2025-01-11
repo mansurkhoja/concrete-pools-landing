@@ -4,7 +4,6 @@ import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import Lenis from 'lenis'
 import { isTouch } from './utils'
 import lazyImage from './lazyImage'
-// import header from './header'
 import nav from './nav'
 import modal from './modal'
 import form from './form'
@@ -46,13 +45,7 @@ export default () => {
 		ScrollTrigger.clearScrollMemory('manual')
 	}
 
-	if (!isTouch) {
-		import('./cursor').then(cursor => cursor.default())
-	}
-
 	lazyImage()
-
-	// header()
 
 	nav()
 
@@ -78,6 +71,7 @@ export default () => {
 		import('./teamTouch').then(team => team.default())
 	} else {
 		import('./team').then(team => team.default())
+		import('./cursor').then(cursor => cursor.default())
 	}
 
 	reviews()
