@@ -47,7 +47,6 @@ export default () => {
 			trigger: gallery,
 			once: true,
 			start: '-=125px center',
-			// start: 'top center',
 			toggleClass: 'active',
 		})
 	})
