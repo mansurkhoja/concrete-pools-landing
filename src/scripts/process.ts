@@ -2,7 +2,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Slider from './slider'
 import { isScrollToHashInProgress, toggleNavVisibility } from './nav'
-import { toggleHeaderVisibility } from './header'
 
 const section = document.querySelector('.process') as HTMLElement
 const header = section.querySelector('.process__header') as HTMLElement
@@ -69,7 +68,6 @@ export default () => {
 		onEnterBack: () => {
 			if (isScrollToHashInProgress) return
 			toggleNavVisibility(true)
-			toggleHeaderVisibility(true)
 		},
 		onEnter: () => {
 			if (!sliderShown) {
@@ -79,17 +77,14 @@ export default () => {
 			}
 			if (isScrollToHashInProgress) return
 			toggleNavVisibility(true)
-			toggleHeaderVisibility(true)
 		},
 		onLeave: () => {
 			if (isScrollToHashInProgress) return
 			toggleNavVisibility()
-			toggleHeaderVisibility()
 		},
 		onLeaveBack: () => {
 			if (isScrollToHashInProgress) return
 			toggleNavVisibility()
-			toggleHeaderVisibility()
 		},
 	})
 }

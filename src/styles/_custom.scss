@@ -472,6 +472,27 @@
   }
 }
 
+.to-top {
+	width: 186px;
+	height: 70px;
+	left: auto;
+	top: auto;
+	right: 25px;
+	bottom: var.$size-nav-tablet-mini + var.$position-nav-bottom-tablet-mini + 10px;
+	z-index: var.$index-nav - 1;
+	border: 1px solid rgba(79, 114, 166, 0.2);
+	backdrop-filter: blur(20px);
+	border-radius: 500px;
+	color: var.$color-blue-main;
+	font-weight: 500;
+	font-size: 24px;
+
+	&__icon {
+		width: 20px;
+		margin-left: 10px;
+	}
+}
+
 @include media.hover {
   .btn {
     &:hover,

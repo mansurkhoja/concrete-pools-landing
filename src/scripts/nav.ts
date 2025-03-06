@@ -3,7 +3,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
 import { bodyScroll } from './app'
 import { getViewportDimensions } from './utils'
-import { toggleHeaderVisibility } from './header'
 
 const nav = document.querySelector('.nav') as HTMLElement
 const toggle = nav.querySelector('.nav__toggle') as HTMLElement
@@ -30,11 +29,6 @@ const tlExpand = gsap.timeline({
 	defaults: { duration: 0.6 },
 	paused: true,
 })
-
-const headerHeight = () => {
-	const { isDesktop } = getViewportDimensions()
-	return isDesktop ? 90 : 70
-}
 
 const updateTlExpand = () => {
 	const { isMobile } = getViewportDimensions()
@@ -122,10 +116,9 @@ const scrollToActiveLink = (duration = 0.4) => {
 
 const toggleNavHeader = (isHide: boolean = true) => {
 	toggleNavVisibility(isHide)
-	toggleHeaderVisibility(isHide)
 }
 
-const onSectionFullAuto = (section: HTMLElement, isEnter: boolean = true) => {	
+const onSectionFullAuto = (section: HTMLElement, isEnter: boolean = true) => {
 	if (section.classList.contains('full--auto')) {
 		toggleNavHeader(isEnter)
 	}
@@ -156,9 +149,7 @@ export default () => {
 					isScrollToHashInProgress = false
 				},
 				lock: true,
-				offset: section.classList.contains('full')
-					? offset
-					: offset - headerHeight(),
+				offset: offset,
 				lerp: 0.07,
 				duration: 1,
 			})
@@ -196,12 +187,18 @@ export default () => {
 			onLeave: () => {
 				if (isScrollToHashInProgress) return
 				onSectionFullAuto(section, false)
-			}
+			},
 		})
 	})
 
 	window.addEventListener('resize', () => {
 		updateTlExpand()
 		scrollToActiveLink()
+	})
+
+	const toTop = document.querySelector('.to-top')
+
+	toTop?.addEventListener('click', () => {
+		bodyScroll.scrollTo(0, { lock: true })
 	})
 }

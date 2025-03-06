@@ -2,7 +2,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { getViewportDimensions, loadVideo } from './utils'
 import { isScrollToHashInProgress, toggleNavVisibility } from './nav'
-import { toggleHeaderVisibility } from './header'
 import Slider from './slider'
 
 const section = document.querySelector('.management') as HTMLElement
@@ -102,22 +101,18 @@ export const onPreloadComplete = () => {
 				onEnterBack: () => {
 					if (isScrollToHashInProgress) return
 					toggleNavVisibility(true)
-					toggleHeaderVisibility(true)
 				},
 				onEnter: () => {
 					if (isScrollToHashInProgress) return
 					toggleNavVisibility(true)
-					toggleHeaderVisibility(true)
 				},
 				onLeave: () => {
 					if (isScrollToHashInProgress) return
 					toggleNavVisibility()
-					toggleHeaderVisibility()
 				},
 				onLeaveBack: () => {
 					if (isScrollToHashInProgress) return
 					toggleNavVisibility()
-					toggleHeaderVisibility()
 				},
 			})
 			items.classList.add('show')
