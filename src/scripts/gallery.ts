@@ -38,8 +38,17 @@ export default () => {
 		container.scrollTo(scrollAmount(window.innerWidth / 2), 0)
 
 		if (!isTouch) {
+			gallery.classList.add('scrollbar')
+
 			container.addEventListener('mousemove', e => {
-				containerScroll.scrollTo(scrollAmount(e.clientX))
+				if (container.offsetHeight - e.offsetY > 13) {
+					containerScroll.scrollTo(scrollAmount(e.clientX))
+				} else {
+					if (containerScroll.isScrolling) {
+						containerScroll.stop()
+						containerScroll.start()
+					}
+				}
 			})
 		}
 

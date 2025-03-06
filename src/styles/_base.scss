@@ -43,9 +43,9 @@ html.lenis body {
 	pointer-events: none;
 }
 
-::-webkit-scrollbar {
-	display: none;
-}
+// ::-webkit-scrollbar {
+// 	display: none;
+// }
 
 ::selection {
 	background-color: var.$color-blue-main;

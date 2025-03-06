@@ -54,6 +54,10 @@
 				margin: 15px 0 0 10px;
 			}
 		}
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
 	}
 
 	&__item {

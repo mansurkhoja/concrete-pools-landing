@@ -119,3 +119,33 @@ $portfolio-item-width--tablet: 403px;
 		}
 	}
 }
+.portfolio__gallery:not(.scrollbar) {
+	.portfolio__container::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.scrollbar {
+	.portfolio__title {
+		bottom: 52px;
+	}
+
+	.portfolio__container {
+		padding-bottom: 40px;
+	}
+
+	.portfolio__container::-webkit-scrollbar-track {
+		border-radius: 10px;
+		background-color: transparent;
+	}
+
+	.portfolio__container::-webkit-scrollbar {
+		height: 12px;
+		background-color: transparent;
+	}
+
+	.portfolio__container::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: rgba(216, 216, 216, 1);
+	}
+}

@@ -14,7 +14,6 @@ import life from './life'
 import process from './process'
 import portfolio from './portfolio'
 import gallery from './gallery'
-import reviews from './reviews'
 import contacts from './contacts'
 import map from './map'
 import footer from './footer'
@@ -73,8 +72,6 @@ export default () => {
 		import('./team').then(team => team.default())
 		import('./cursor').then(cursor => cursor.default())
 	}
-
-	reviews()
 
 	contacts()
 
