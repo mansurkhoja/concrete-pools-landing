@@ -30,22 +30,20 @@ $header-max-width: 1450px;
 		}
 	}
 
-	// &__gradient {
-	// 	top: 50%;
-	// 	left: 50%;
-	// 	transform: translate(-50%, -50%);
-	// 	width: calc(100vw + $title-scroll-end);
-	// }
-
 	&__inner {
 		position: relative;
-		height: 340px; // 300
-		// margin-top: calc(1000px - 100vh + (50vh - 250px));
+		height: 340px + 140px; // 300
 		margin-top: calc($title-scroll-end - var.sizeVH(100) + (var.sizeVH(50) - 315px));
+
+		&-header {
+			text-align: center;
+		}
 	}
 
 	&__slider {
-		height: calc(100% - 40px);
+		// height: calc(100% - 40px);
+		height: calc(100% - 180px);
+		top: 140px;
 	}
 
 	&__dots {
@@ -135,9 +133,9 @@ $header-max-width: 1450px;
 
 		&__inner {
 			margin-top: calc($title-scroll-end - var.sizeVH(100) + (var.sizeVH(50) - 250px));
-			height: var.sizeVH(100);
+			height: calc(var.sizeVH(100) + 140px);
 			min-height: var.$size-v-h-min;
-			max-height: 600px; // 560
+			max-height: 600px + 140px; // 560
 		}
 
 		&__parallaxes {
@@ -147,10 +145,6 @@ $header-max-width: 1450px;
 		}
 
 		&__parallax {
-			// &--1 {
-			// 	margin-top: -120px;
-			// }
-
 			&--2 {
 				margin-top: -80px;
 			}
@@ -169,16 +163,12 @@ $header-max-width: 1450px;
 				&:nth-child(2) {
 					margin-left: 40px;
 				}
-
-				// &:nth-child(3) {
-				// 	margin-left: 60px;
-				// }
 			}
 		}
 
 		&__inner {
 			margin-top: calc($title-scroll-end - var.sizeVH(100) + (var.sizeVH(50) - 225px));
-			max-height: 720px; // 680
+			max-height: 720px + 140px; // 680
 		}
 	}
 
@@ -203,7 +193,7 @@ $header-max-width: 1450px;
 
 		&__inner {
 			margin-top: calc($title-scroll-end - var.sizeVH(100) + (50vh - 195px));
-			max-height: 820px; // 780
+			max-height: 820px + 140px; // 780
 		}
 
 		&__parallaxes {
@@ -214,7 +204,6 @@ $header-max-width: 1450px;
 		&__parallax {
 			&--1 {
 				margin-top: 0;
-				// margin-top: -130px;
 				width: 330px;
 			}
 
