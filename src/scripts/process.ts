@@ -55,8 +55,8 @@ export default () => {
 			)
 			.fromTo(
 				counter[index],
-				{ autoAlpha: 0, yPercent: -100, scaleX: 1.5 },
-				{ autoAlpha: 1, yPercent: -60, scaleX: 1 },
+				{ autoAlpha: 0, yPercent: -120, scaleX: 1.5 },
+				{ autoAlpha: 1, yPercent: -100, scaleX: 1 },
 				'<'
 			)
 	})
