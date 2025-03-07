@@ -30,6 +30,13 @@ $header-max-width: 1450px;
 		}
 	}
 
+	&__gradient {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: calc(50vw + $title-scroll-end);
+	}
+
 	&__inner {
 		position: relative;
 		height: 340px + 140px; // 300
