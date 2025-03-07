@@ -1,5 +1,8 @@
 import { gsap } from 'gsap'
 import { bodyScroll } from './app'
+import '@splidejs/splide/css/core'
+import Splide from '@splidejs/splide'
+
 const modalShowName = 'data-modal-show'
 const modalHideName = 'data-modal-hide'
 
@@ -68,5 +71,16 @@ export default () => {
 		button.addEventListener('click', () => {
 			hide(id)
 		})
+	})
+
+	const slides = document.querySelectorAll('.splide') as NodeListOf<HTMLElement>
+
+	slides.forEach(slide => {
+		new Splide(slide, {
+			arrows: false,
+			padding: { left: 0, right: '10%' },
+			gap: '5%',
+			type: 'loop'
+		}).mount()
 	})
 }

@@ -51,6 +51,10 @@
 		&::-webkit-scrollbar {
 			display: none;
 		}
+
+		.splide {
+			width: calc(100% + math.div(var.$padding, 2));
+		}
 	}
 
 	&__image {
@@ -58,6 +62,14 @@
 		min-height: 40vw;
 		max-height: var.sizeVH(50);
 		margin-bottom: 20px;
+		position: relative;
+
+		.splide__slide  {
+			position: relative;
+		}
+		.splide__track {
+			height: 100%;
+		}
 	}
 
 	&__title {
@@ -87,6 +99,10 @@
 
 		&__inner {
 			padding: var.$padding;
+
+			.splide {
+				width: calc(100% + var.$padding);
+			}
 		}
 
 		&__title {
@@ -116,6 +132,10 @@
 
 		&__inner {
 			padding: var.$padding-tablet;
+
+			.splide {
+				width: calc(100% + var.$padding-tablet);
+			}
 		}
 
 		&__image {
