@@ -80,7 +80,7 @@ export default () => {
 			arrows: false,
 			padding: { left: 0, right: '10%' },
 			gap: '5%',
-			type: 'loop'
+			pagination: true,
 		}).mount()
 	})
 }
