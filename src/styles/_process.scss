@@ -119,11 +119,13 @@
 			display: flex;
 			align-items: center;
 			justify-content: flex-end;
-			font-size: 64px;
+			// font-size: 64px;
+			font-size: 55px !important;
 		}
 
 		&__button {
-			padding: 0 10px;
+			// padding: 0 10px;
+			padding: 0 5px;
 			color: var.$color-white-main;
 			--opacity: 0.5;
 			letter-spacing: -0.02em;
