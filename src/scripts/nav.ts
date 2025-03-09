@@ -124,6 +124,11 @@ const onSectionFullAuto = (section: HTMLElement, isEnter: boolean = true) => {
 	}
 }
 
+const headerHeight = () => {
+	const { isDesktop } = getViewportDimensions()
+	return isDesktop ? 90 : 70
+}
+
 export default () => {
 	updateTlExpand()
 	toggle.addEventListener('click', toggleNavExpand)
@@ -149,7 +154,10 @@ export default () => {
 					isScrollToHashInProgress = false
 				},
 				lock: true,
-				offset: offset,
+				// offset: offset,
+				offset: section.classList.contains('full')
+					? offset
+					: offset - headerHeight(),
 				lerp: 0.07,
 				duration: 1,
 			})
