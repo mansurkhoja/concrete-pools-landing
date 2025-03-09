@@ -1,6 +1,5 @@
 import { gsap } from 'gsap'
 import { bodyScroll } from './app'
-import '@splidejs/splide/css/core'
 import Splide from '@splidejs/splide'
 
 const modalShowName = 'data-modal-show'
@@ -19,9 +18,30 @@ let tl: gsap.core.Timeline
 export const show = (id: string | null) => {
 	if (id) {
 		activeModal = document.getElementById(id)
+
 		if (activeModal) {
 			bodyScroll.stop()
 			activeModal.classList.remove('d-none')
+
+			let slide = activeModal.querySelector('.splide') as HTMLElement
+			if (slide) {
+				if (!slide.classList.contains('is-initialized')) {
+					const splide = new Splide(slide, {
+						arrows: false,
+						padding: { left: 0, right: '10%' },
+						gap: '5%',
+						pagination: true,
+					})
+			
+					splide.on('pagination:mounted', function (data) {
+						data.items.forEach( function ( item ) {
+							item.button.classList.add('link')
+						} );
+					})
+
+					splide.mount()
+				}
+			}
 			let container = activeModal.querySelector('.modal__container')
 			tl = gsap.effects.modal(activeModal, container)
 			tl.play()
@@ -73,14 +93,21 @@ export default () => {
 		})
 	})
 
-	const slides = document.querySelectorAll('.splide') as NodeListOf<HTMLElement>
-
+	/* const slides = document.querySelectorAll('.splide') as NodeListOf<HTMLElement>
 	slides.forEach(slide => {
-		new Splide(slide, {
+		const splide = new Splide(slide, {
 			arrows: false,
 			padding: { left: 0, right: '10%' },
 			gap: '5%',
 			pagination: true,
-		}).mount()
-	})
+		})
+
+		splide.on('pagination:mounted', function (data) {
+			data.items.forEach(function (item) {
+				item.button.classList.add('link')
+			})
+		})
+
+		splide.mount()
+	}) */
 }

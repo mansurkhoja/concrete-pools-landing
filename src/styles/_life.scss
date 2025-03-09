@@ -226,3 +226,10 @@ $header-max-width: 1450px;
 		}
 	}
 }
+
+.splide__pagination__page {
+	&.is-active {
+		opacity: 1;
+	}
+	@extend .life__dot;
+}
