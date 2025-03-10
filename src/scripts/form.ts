@@ -1,8 +1,8 @@
+import IMask, { InputMask } from 'imask'
+
 let from = ''
-const phoneCode = '+7'
-const formBlocks = document.querySelectorAll(
-	'.form'
-) as NodeListOf<HTMLElement>
+// const phoneCode = '+7'
+const formBlocks = document.querySelectorAll('.form') as NodeListOf<HTMLElement>
 const dataFromButtons = document.querySelectorAll(
 	'[data-from]'
 ) as NodeListOf<HTMLElement>
@@ -10,11 +10,12 @@ const dataFromButtons = document.querySelectorAll(
 const handleSubmit = (e: SubmitEvent, block: HTMLElement): void => {
 	e.preventDefault()
 	block.classList.add('p-none', 'form--loading')
-	// block.classList.add('form--loading')
 
 	const form = e.target as HTMLFormElement
 	const formData = new FormData(form)
 	formData.set('from', form.closest('.contacts') ? '' : from)
+	const phone = formData.get('phone') as string
+	formData.set('phone', phone.replace(/\D/g, ''))
 
 	fetch(form.action, {
 		method: 'POST',
@@ -44,12 +45,12 @@ const toggleActive = (input: HTMLInputElement | HTMLTextAreaElement) => {
 
 const validateName = (input: HTMLInputElement) => input.value.trim().length < 2
 
-const validatePhone = (input: HTMLInputElement) => {
-	const regex = /^[+]?\d+$/
-	const value = input.value
-	return (
-		value.length !== 12 || !value.startsWith(phoneCode) || !regex.test(value)
-	)
+const validatePhone = (
+	maskTel: InputMask<{
+		mask: string
+	}>
+) => {
+	return maskTel._unmaskedValue.length < 11
 }
 
 export default () => {
@@ -57,7 +58,12 @@ export default () => {
 		const form = block.querySelector('form') as HTMLFormElement
 		const nameInput = block.querySelector('[name="name"]') as HTMLInputElement
 		const phoneInput = block.querySelector('[name="phone"]') as HTMLInputElement
-		const messageArea = block.querySelector('[name="message"]') as HTMLTextAreaElement
+		const messageArea = block.querySelector(
+			'[name="message"]'
+		) as HTMLTextAreaElement
+		const maskTel = IMask(phoneInput, {
+			mask: '+{7} (000) 000-00-00',
+		})
 
 		nameInput.addEventListener('input', () => {
 			const nameValue = nameInput.value
@@ -67,29 +73,38 @@ export default () => {
 			toggleActive(nameInput)
 		})
 
+		phoneInput.addEventListener(
+			'focus',
+			() => {
+				phoneInput.value = '+7 ('
+				maskTel.updateValue()
+			},
+			{ once: true }
+		)
+
 		phoneInput.addEventListener('focus', () => {
-			let phoneValue = phoneInput.value
-			if (!phoneValue.startsWith(phoneCode)) {
-				phoneInput.value = phoneCode + phoneValue.slice(2)
-				toggleActive(phoneInput)
-			}
+			toggleActive(phoneInput)
 		})
 
+		// phoneInput.addEventListener(
+		// 	'blur',
+		// 	() => {
+		// 		toggleError(phoneInput, maskTel._unmaskedValue.length < 11)
+		// 	},
+		// 	{ once: true }
+		// )
+
 		phoneInput.addEventListener('input', () => {
-			let phoneValue = phoneInput.value.replace(/[^0-9+]/g, '')
-
-			phoneInput.value = phoneValue
-
-			toggleError(phoneInput, validatePhone(phoneInput))
+			toggleError(phoneInput, validatePhone(maskTel))
 			toggleActive(phoneInput)
 		})
 
 		messageArea.addEventListener('input', () => toggleActive(messageArea))
 
 		form.addEventListener('submit', e => {
-			if (validatePhone(phoneInput) || validateName(nameInput)) {
+			if (validatePhone(maskTel) || validateName(nameInput)) {
 				e.preventDefault()
-				toggleError(phoneInput, validatePhone(phoneInput))
+				toggleError(phoneInput, validatePhone(maskTel))
 				toggleError(nameInput, validateName(nameInput))
 			} else {
 				handleSubmit(e, block)
