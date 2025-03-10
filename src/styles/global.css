@@ -223,3 +223,17 @@ iframe {
 	position: relative;
 	z-index: 0;
 }
+
+.splide__arrow {
+	z-index: 2;
+}
+
+.splide__arrow[disabled] {
+	pointer-events: none;
+}
+
+@media (hover: none) {
+	.splide__arrow {
+		display: none !important;
+	}
+}

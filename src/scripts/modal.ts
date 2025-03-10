@@ -27,16 +27,16 @@ export const show = (id: string | null) => {
 			if (slide) {
 				if (!slide.classList.contains('is-initialized')) {
 					const splide = new Splide(slide, {
-						arrows: false,
+						// arrows: false,
 						padding: { left: 0, right: '10%' },
 						gap: '5%',
 						pagination: true,
 					})
-			
+
 					splide.on('pagination:mounted', function (data) {
-						data.items.forEach( function ( item ) {
+						data.items.forEach(function (item) {
 							item.button.classList.add('link')
-						} );
+						})
 					})
 
 					splide.mount()
