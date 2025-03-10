@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { ViteMinifyPlugin } from 'vite-plugin-minify'
+// import { ViteMinifyPlugin } from 'vite-plugin-minify'
 import injectHTML from 'vite-plugin-html-inject'
 import autoprefixer from 'autoprefixer'
 
@@ -10,7 +10,7 @@ export default defineConfig({
 				logPath: false,
 			},
 		}),
-		ViteMinifyPlugin(),
+		// ViteMinifyPlugin(),
 	],
 	build: {
 		rollupOptions: {
