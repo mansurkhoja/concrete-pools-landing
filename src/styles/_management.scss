@@ -76,7 +76,7 @@
 		top: 50%;
 		left: 50%;
 		width: 100%;
-		transform: translate(-50%, 100%);
+		transform: translate(-50%, 115%);
 		padding: 0 var.$padding;
 		will-change: transform, opacity;
 		transition:
@@ -234,7 +234,7 @@
 
 		&__title {
 			font-size: 24px;
-			width: 350px;
+			width: 360px;
 			height: 150px;
 		}
 
