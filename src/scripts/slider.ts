@@ -118,7 +118,7 @@ export default class Slider {
 					this.voiceButton!.classList.toggle('muted', this.muted)
 					this.voiceButton!.classList.toggle('btn--active', this.muted)
 					this.videos!.forEach(video => {
-						video.muted = this.muted
+						video.muted = !this.muted
 					})
 				}
 			})
