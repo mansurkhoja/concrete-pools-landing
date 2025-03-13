@@ -44,6 +44,14 @@ $header-max-width: 1450px;
 
 		&-header {
 			text-align: center;
+
+			.btn__container:after {
+				background-color: var.$color-blue-main;
+			}
+
+			.btn__item {
+				color: #fff;
+			}
 		}
 	}
 
