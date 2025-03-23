@@ -377,6 +377,8 @@
   &-prev,
   &-next {
     width: 30%;
+    // background-color: var.$color-blue-main;
+    // animation: flash 1s linear 0s 1 forwards;
   }
 
   &-next {
@@ -384,6 +386,16 @@
     right: 0;
   }
 }
+
+// @keyframes flash {
+//   0%,50%,to {
+//       opacity: 0
+//   }
+
+//   25%,75% {
+//       opacity: 0.2
+//   }
+// }
 
 .btn-play {
   color: var.$color-white-main;
