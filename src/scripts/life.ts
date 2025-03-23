@@ -8,7 +8,7 @@ const title = document.querySelector('.life__title') as HTMLElement
 const titleItems = title.querySelectorAll(
 	'.life__title-item'
 ) as NodeListOf<HTMLElement>
-// const titleGradient = title.querySelector('.gradient-bg') as HTMLElement
+const titleGradient = title.querySelector('.gradient-bg') as HTMLElement
 const sliderParent = document.querySelector('.life__slider') as HTMLElement
 const sliderButtons = document.querySelectorAll(
 	'.life__dot'
@@ -54,12 +54,12 @@ export default () => {
 			{ opacity: 1, stagger: { amount: 2 }, ease: 'power1.in' },
 			'<'
 		)
-		// .fromTo(
-		// 	titleGradient,
-		// 	{ autoAlpha: 0 },
-		// 	{ autoAlpha: 1 },
-		// 	'<'
-		// )
+		.fromTo(
+			titleGradient,
+			{ autoAlpha: 0 },
+			{ autoAlpha: 1 },
+			'<'
+		)
 		.to(title, { y: -360, duration: 2 })
 		.to(
 			letters,
