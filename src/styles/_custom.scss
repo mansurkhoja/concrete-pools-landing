@@ -238,10 +238,6 @@
   transition: opacity map.get(var.$transition-duration, "show/hide") var.$easing-linear
     map.get(var.$transition-duration, "show/hide");
 
-  &--active {
-    opacity: 1;
-  }
-
   &__line {
     left: -100%;
     background-color: #fff;
@@ -377,7 +373,8 @@
   &-prev,
   &-next {
     width: 30%;
-    // background-color: var.$color-blue-main;
+    background-color: var.$color-blue-main;
+    opacity: 0;
     // animation: flash 1s linear 0s 1 forwards;
   }
 
@@ -387,15 +384,23 @@
   }
 }
 
-// @keyframes flash {
-//   0%,50%,to {
-//       opacity: 0
-//   }
+@keyframes flash {
+  20% {
+    opacity: 0.1;
+  }
 
-//   25%,75% {
-//       opacity: 0.2
-//   }
-// }
+  40% {
+    opacity: 0.2;
+  }
+
+  60% {
+    opacity: 0.4;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
 
 .btn-play {
   color: var.$color-white-main;
@@ -481,6 +486,19 @@
   .title,
   .subtitle {
     transform: scaleY(1);
+  }
+}
+
+.slider-showed {
+  .progress {
+    opacity: 1;
+  }
+
+  .btn {
+    &-prev,
+    &-next {
+      animation: flash 4s var.$easing-ease-in-out 0s 1 forwards;
+    }
   }
 }
 

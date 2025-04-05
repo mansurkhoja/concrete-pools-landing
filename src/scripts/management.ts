@@ -69,12 +69,12 @@ export default async () => {
 	})
 
 	slider = new Slider({
+		section: section,
 		parent: sliderParent,
 		buttons: sliderButtons,
 		slides: sliderSlides,
 		videos: sliderVideos,
 		progress: sliderProgress,
-		section: section,
 		autoInit: false,
 		emitOnChange() {
 			tlTogglePhone.reverse()
@@ -94,7 +94,6 @@ export const onPreloadComplete = () => {
 		start: 'top bottom',
 		once: true,
 		onEnter: () => {
-			slider.show()
 			ScrollTrigger.create({
 				trigger: section,
 				start: 'center-=100px center',
@@ -120,6 +119,7 @@ export const onPreloadComplete = () => {
 					toggleHeaderVisibility()
 				},
 			})
+			slider.show()
 			items.classList.add('show')
 		},
 	})

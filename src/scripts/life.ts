@@ -2,6 +2,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import imagesSlider from './imagesSlider'
 import { isTouch } from './utils'
+import Slider from './slider'
 
 const header = document.querySelector('.life__header') as HTMLElement
 const title = document.querySelector('.life__title') as HTMLElement
@@ -83,12 +84,20 @@ export default () => {
 		},
 	})
 
-	new imagesSlider({
+	const slider = new Slider({
+		section: sliderParent,
 		parent: sliderParent,
 		buttons: sliderButtons,
 		slides: slides,
-		prevButton: slidePrev,
-		nextButton: slideNext,
+		speed: 1.6,
+		easing: 'power1.in'
+	})
+
+	ScrollTrigger.create({
+		trigger: sliderParent,
+		start: 'top bottom',
+		once: true,
+		onEnter: () => slider.show(),
 	})
 
 	if (isTouch) {

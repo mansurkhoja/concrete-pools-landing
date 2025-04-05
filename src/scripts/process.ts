@@ -17,13 +17,9 @@ const sliderButtons = section.querySelectorAll(
 	'.process__button'
 ) as NodeListOf<HTMLElement>
 const sliderProgress = sliderParent.querySelector('.progress') as HTMLElement
-const sliderVoice = section.querySelector('.process__voice') as HTMLElement
 const sliderCover = sliderParent.querySelectorAll(
 	'.process__cover'
 ) as NodeListOf<HTMLElement>
-const sliderPlayButton = sliderParent.querySelector('.btn-play') as HTMLElement
-const slidePrev = sliderParent.querySelector('.btn-prev') as HTMLElement
-const slideNext = sliderParent.querySelector('.btn-next') as HTMLElement
 const title = section.querySelectorAll('.process__name')
 const counter = section.querySelectorAll('.process__counter span')
 
@@ -38,11 +34,7 @@ export default () => {
 		slides: sliderSlides,
 		videos: sliderVideos,
 		progress: sliderProgress,
-		autoplay: false,
-		voiceButton: sliderVoice,
-		playButton: sliderPlayButton,
-		prevButton: slidePrev,
-		nextButton: slideNext,
+		autoPlay: false,
 		covers: sliderCover,
 	})
 
