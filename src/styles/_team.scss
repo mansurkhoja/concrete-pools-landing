@@ -18,7 +18,7 @@
 			opacity map.get(var.$transition-duration, "show/hide") * 2 var.$easing-linear 0.2s,
 			border-color map.get(var.$transition-duration, "show/hide") * 2 var.$easing-ease
 				map.get(var.$transition-duration, "show/hide") * 2;
-		border-bottom: 1px solid rgba($color: var.$color-dark-main, $alpha: 0.24);
+		border-bottom: 1px solid rgba($color: var.$color-blue-main, $alpha: 0.5);
 		position: relative;
 
 		&.active {
@@ -162,10 +162,10 @@
 		}
 
 		&__avatars {
-			width: var.sizeVH(45);
-			height: var.sizeVH(54);
-			width: var.sizeSVH(45);
-			height: var.sizeSVH(54);
+			width: var.sizeVH(40);
+			height: var.sizeVH(50);
+			width: var.sizeSVH(40);
+			height: var.sizeSVH(50);
 			max-width: 400px;
 			max-height: 480px;
 		}
