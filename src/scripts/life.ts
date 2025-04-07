@@ -1,6 +1,5 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import imagesSlider from './imagesSlider'
 import { isTouch } from './utils'
 import Slider from './slider'
 
@@ -17,8 +16,6 @@ const sliderButtons = document.querySelectorAll(
 const slides = sliderParent.querySelectorAll(
 	'.life__slide'
 ) as NodeListOf<HTMLElement>
-const slidePrev = sliderParent.querySelector('.btn-prev') as HTMLElement
-const slideNext = sliderParent.querySelector('.btn-next') as HTMLElement
 
 const tlTitle = gsap.timeline({ paused: true })
 const letters: HTMLSpanElement[] = []
