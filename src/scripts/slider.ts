@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 interface SliderProps {
 	section: HTMLElement
 	parent: HTMLElement
-	buttons: NodeListOf<HTMLElement>
+	buttons?: NodeListOf<HTMLElement>
 	covers?: NodeListOf<HTMLElement>
 	slides: NodeListOf<HTMLElement>
 	videos?: NodeListOf<HTMLVideoElement>
@@ -22,7 +22,7 @@ export default class Slider {
 	//props
 	private section: HTMLElement
 	private parent: HTMLElement
-	private buttons: NodeListOf<HTMLElement>
+	private buttons?: NodeListOf<HTMLElement>
 	private covers?: NodeListOf<HTMLElement>
 	private slides: NodeListOf<HTMLElement>
 	private videos?: NodeListOf<HTMLVideoElement>
@@ -40,7 +40,7 @@ export default class Slider {
 	private prevIndex: number = 0
 	private animating: boolean = false
 	private canPlay: boolean = false
-	private initialized: boolean = false
+	public initialized: boolean = false
 	private loaded: number[] = []
 
 	//animations
@@ -158,17 +158,25 @@ export default class Slider {
 		}
 
 		if (prevButton) {
-			prevButton.addEventListener('click', () => {
-				this.change(
-					(this.currentIndex - 1 + this.slides.length) % this.slides.length
-				)
-			})
+			if (this.slides.length > 1) {
+				prevButton.addEventListener('click', () => {
+					this.change(
+						(this.currentIndex - 1 + this.slides.length) % this.slides.length
+					)
+				})
+			} else {
+				prevButton.classList.add('d-none')
+			}
 		}
 
 		if (nextButton) {
-			nextButton.addEventListener('click', () => {
-				this.change()
-			})
+			if (this.slides.length > 1) {
+				nextButton.addEventListener('click', () => {
+					this.change()
+				})
+			} else {
+				nextButton.classList.add('d-none')
+			}
 		}
 	}
 
@@ -252,7 +260,7 @@ export default class Slider {
 		}
 	}
 
-	public async playVideo(autoPlay = this.autoPlay): Promise<void> {
+	private async playVideo(autoPlay = this.autoPlay): Promise<void> {
 		if (this.canPlay && autoPlay) {
 			const index = this.currentIndex
 			const video = this.videos![index]
@@ -261,7 +269,7 @@ export default class Slider {
 		}
 	}
 
-	public pauseVideo({
+	private pauseVideo({
 		index = this.currentIndex,
 		isCurrentTime = true,
 		isStopProgress = true,
@@ -341,8 +349,11 @@ export default class Slider {
 		this.currentIndex = index
 
 		this.section.setAttribute('data-slider', index.toString())
-		this.buttons[this.prevIndex].classList.remove('active')
-		this.buttons[this.currentIndex].classList.add('active')
+
+		if (this.buttons) {
+			this.buttons[this.prevIndex].classList.remove('active')
+			this.buttons[this.currentIndex].classList.add('active')
+		}
 
 		if (this.emitOnChange) {
 			this.emitOnChange()
