@@ -7,7 +7,20 @@
 		</button>
 		<div class="modal__inner">
 			<div class="modal__image lazy">
-				<img class="fit-cover" loading="lazy" src="/src/assets/images/model/modal_1.webp" alt="Скимерный бассейн">
+				<div class="modal__slider absolute o-hidden">
+					<div class="modal__slider-container absolute">
+						<div class="absolute o-hidden">
+							<div class="modal__slide absolute lazy">
+								<picture>
+									<img class="fit-cover" loading="lazy" src="/src/assets/images/model/modal_1.webp"
+										alt="Скимерный бассейн">
+								</picture>
+							</div>
+						</div>
+					</div>
+					<button class="btn-prev absolute" aria-label="Пред слайд"></button>
+					<button class="btn-next absolute" aria-label="След слайд"></button>
+				</div>
 			</div>
 			<div class="modal__title">
 				Скиммерный бассейн
