@@ -1,7 +1,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Distortion from './distortion'
-import WebGL from './fluid/WebGL'
+import Fluid from './fluid/Fluid'
 
 const items = document.querySelectorAll(
 	'.model__item'
@@ -60,7 +60,7 @@ export default () => {
 				})
 			},
 			emitOnShown() {
-				new WebGL({
+				new Fluid({
 					container: item,
 					parent: container,
 					src: imageSrc,

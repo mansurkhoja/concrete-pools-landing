@@ -39,7 +39,6 @@ export default class WebGL {
 			trigger: this.props.container,
 			start: 'top bottom',
 			end: 'bottom top',
-			markers: true,
 			onEnter: () => {
 				this.isVisible = true
 			},
