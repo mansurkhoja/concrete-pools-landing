@@ -8,24 +8,21 @@
 		padding: 60px var.$padding 100px;
 
 		&.active .contacts__animation {
-			clip-path: inset(0% 0% 0% 0%);
 			opacity: 1;
 			transform: none;
 		}
 	}
 
 	&__animation {
-		will-change: clip-path;
-		clip-path: inset(0% 0% 100% 0%);
-		transition: clip-path 0.8s var.$easing-ease-in-out 0.2s;
-
-		&.form__item {
-			will-change: opacity, transform;
-			transition:
-				opacity 1s var.$easing-ease-in-out 0.3s,
-				transform 1s var.$easing-ease-in-out 0.3s;
-			opacity: 0;
-			transform: translateY(20px);
+		will-change: opacity, transform;
+		transition:
+			opacity 1s var.$easing-ease-in-out 0.3s,
+			transform 1s var.$easing-ease-in-out 0.3s;
+		opacity: 0;
+		transform: translateY(20px);
+		
+		&.form__title {
+			transition-delay: 0s;
 		}
 	}
 
