@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import { ViteMinifyPlugin } from 'vite-plugin-minify'
 import injectHTML from 'vite-plugin-html-inject'
 import autoprefixer from 'autoprefixer'
+import glsl from 'vite-plugin-glsl'
 
 export default defineConfig({
 	plugins: [
@@ -11,6 +12,9 @@ export default defineConfig({
 			},
 		}),
 		ViteMinifyPlugin(),
+		glsl({
+			compress: true,
+		}),
 	],
 	build: {
 		rollupOptions: {
