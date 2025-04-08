@@ -16,7 +16,6 @@ import gallery from './gallery'
 import reviews from './reviews'
 import contacts from './contacts'
 import map from './map'
-import footer from './footer'
 
 export let bodyScroll: Lenis
 
@@ -67,10 +66,12 @@ export default () => {
 	if (isTouch) {
 		import('./modelTouch').then(model => model.default())
 		import('./teamTouch').then(team => team.default())
+		import('./footerTouch').then(footer => footer.default())
 	} else {
 		import('./cursor').then(cursor => cursor.default())
 		import('./model').then(model => model.default())
 		import('./team').then(team => team.default())
+		import('./footer').then(footer => footer.default())
 	}
 
 	reviews()
@@ -78,6 +79,4 @@ export default () => {
 	contacts()
 
 	map()
-
-	footer()
 }
