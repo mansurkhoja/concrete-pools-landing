@@ -1,6 +1,5 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Distortion from './distortion'
 
 const items = document.querySelectorAll(
 	'.model__item'
@@ -19,16 +18,16 @@ let tls: gsap.core.Timeline[] = []
 
 export default () => {
 	items.forEach((item, index) => {
-		const container = imagesContainer[index]
-		const img = container.querySelector('img') as HTMLImageElement
-		const hideImage = gsap.set(img, { display: 'none', paused: true })
-
 		tls.push(
 			gsap
 				.timeline({
 					paused: true,
 				})
-				.fromTo(container, { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1 })
+				.fromTo(
+					imagesContainer[index],
+					{ scale: 1.2, opacity: 0 },
+					{ scale: 1, opacity: 1 }
+				)
 				.fromTo(
 					titles[index],
 					{ scale: 1.4, opacity: 0 },
@@ -43,35 +42,12 @@ export default () => {
 				)
 		)
 
-		const distortion = new Distortion({
-			parent: container,
-			emitOnInitialized() {
-				ScrollTrigger.create({
-					trigger: item,
-					start: '-=30px center',
-					once: true,
-					onEnter: () => {
-						distortion.setIsVisible(true)
-						distortion.show()
-						tls[index].play()
-					},
-				})
-			},
-			emitOnShown() {
-				hideImage.reverse()
-				distortion.destroy()
-			},
-		})
-
 		ScrollTrigger.create({
 			trigger: item,
-			start: '-=270px bottom',
+			start: '-=30px center',
 			once: true,
 			onEnter: () => {
-				gsap.set(container, { scale: 1 })
-				container.classList.remove('lazy')
-				distortion.init(img.currentSrc)
-				hideImage.play()
+				tls[index].play()
 			},
 		})
 	})
