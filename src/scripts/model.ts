@@ -1,6 +1,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Distortion from './distortion'
+import WebGL from './fluid/WebGL'
 
 const items = document.querySelectorAll(
 	'.model__item'
@@ -21,7 +22,6 @@ export default () => {
 	items.forEach((item, index) => {
 		const container = imagesContainer[index]
 		const img = container.querySelector('img') as HTMLImageElement
-		const hideImage = gsap.set(img, { display: 'none', paused: true })
 
 		tls.push(
 			gsap
@@ -43,6 +43,8 @@ export default () => {
 				)
 		)
 
+		let imageSrc = ''
+
 		const distortion = new Distortion({
 			parent: container,
 			emitOnInitialized() {
@@ -58,8 +60,12 @@ export default () => {
 				})
 			},
 			emitOnShown() {
-				hideImage.reverse()
-				distortion.destroy()
+				new WebGL({
+					container: item,
+					parent: container,
+					src: imageSrc,
+					onLoad: () => distortion.destroy(),
+				})
 			},
 		})
 
@@ -70,8 +76,9 @@ export default () => {
 			onEnter: () => {
 				gsap.set(container, { scale: 1 })
 				container.classList.remove('lazy')
-				distortion.init(img.currentSrc)
-				hideImage.play()
+				imageSrc = img.currentSrc
+				distortion.init(imageSrc)
+				container.querySelector('picture')?.remove()
 			},
 		})
 	})
