@@ -76,6 +76,10 @@
 		transition:
 			opacity map.get(var.$transition-duration, "show/hide") var.$easing-linear,
 			transform map.get(var.$transition-duration, "show/hide") * 1.5 var.$easing-ease-in-out;
+		
+		@include media.hover {
+			transform: scale(1);
+		}
 
 		&.active {
 			opacity: 1;
