@@ -13,7 +13,7 @@ export default defineConfig({
 		}),
 		ViteMinifyPlugin(),
 		glsl({
-			compress: true,
+			minify: true,
 		}),
 	],
 	build: {
