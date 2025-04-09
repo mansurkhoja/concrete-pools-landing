@@ -31,17 +31,19 @@ $portfolio-item-width--tablet: 403px;
 		}
 
 		.btn__container {
-			transform: translateX(-95px) rotate(-45deg);
+			transform: translateX(-155px) rotate(-45deg);
 		}
 	}
 
 	&__gallery {
 		padding: 60px 0 2vw;
+		will-change: clip-path;
+		clip-path: inset(0% 50% 0% 50%);
+		transition: clip-path 0.8s var.$easing-ease-in-out;
+
 
 		&.active {
-			.portfolio__item {
-				clip-path: inset(0);
-			}
+			clip-path: inset(0);
 		}
 	}
 
@@ -71,9 +73,6 @@ $portfolio-item-width--tablet: 403px;
 	&__item {
 		position: relative;
 		width: $portfolio-item-width;
-		will-change: clip-path;
-		clip-path: inset(50% 0% 50% 0%);
-		transition: clip-path 0.8s var.$easing-ease-in-out;
 
 		&::after {
 			content: "";
