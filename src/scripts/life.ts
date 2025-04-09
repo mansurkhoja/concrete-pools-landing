@@ -9,7 +9,8 @@ const titleItems = title.querySelectorAll(
 	'.life__title-item'
 ) as NodeListOf<HTMLElement>
 const titleGradient = title.querySelector('.gradient-bg') as HTMLElement
-const sliderParent = document.querySelector('.life__slider') as HTMLElement
+const sliderSection = document.querySelector('.life__slider') as HTMLElement
+const sliderParent = document.querySelector('.life__slider-container') as HTMLElement
 const sliderButtons = document.querySelectorAll(
 	'.life__dot'
 ) as NodeListOf<HTMLElement>
@@ -82,7 +83,7 @@ export default () => {
 	})
 
 	const slider = new Slider({
-		section: sliderParent,
+		section: sliderSection,
 		parent: sliderParent,
 		buttons: sliderButtons,
 		slides: slides,
@@ -91,7 +92,7 @@ export default () => {
 	})
 
 	ScrollTrigger.create({
-		trigger: sliderParent,
+		trigger: sliderSection,
 		start: 'top bottom',
 		once: true,
 		onEnter: () => slider.show(),
