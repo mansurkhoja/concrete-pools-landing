@@ -466,14 +466,18 @@
     font-weight: 400;
     line-height: 1;
     white-space: nowrap;
-    will-change: clip-path;
-    clip-path: inset(0% 100% 0% 0%);
-    transition: clip-path 1.4s var.$easing-sine-in-out 0.2s;
+    // will-change: clip-path;
+    // clip-path: inset(0% 100% 0% 0%);
+    // transition: clip-path 1.4s var.$easing-sine-in-out 0.2s;
+    will-change: opacity;
+    opacity: 0;
+    transition: opacity 1.2s var.$easing-sine-in-out 0.3s;
   }
 
   &.active {
     .gallery__text {
-      clip-path: inset(0% 0% 0% 0%);
+      // clip-path: inset(0% 0% 0% 0%);
+      opacity: 1;
     }
   }
 }
