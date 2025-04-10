@@ -47,6 +47,8 @@ export default () => {
 
 		const distortion = new Distortion({
 			parent: container,
+			easing: 'power2.out',
+			speed: 1.2,
 			emitOnInitialized() {
 				ScrollTrigger.create({
 					trigger: item,
