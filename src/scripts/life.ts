@@ -87,8 +87,8 @@ export default () => {
 		parent: sliderParent,
 		buttons: sliderButtons,
 		slides: slides,
-		speed: 1.6,
-		easing: 'power1.in'
+		speed: isTouch ? 1.6 : 1.2,
+		easing: isTouch ? 'power1.in' : 'power2.out'
 	})
 
 	ScrollTrigger.create({
