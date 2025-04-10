@@ -22,6 +22,8 @@ export default () => {
 
 		const distortion = new Distortion({
 			parent: parallaxContainer,
+			speed: 1.5,
+			easing: 'power1.out',
 			emitOnInitialized() {
 				ScrollTrigger.create({
 					trigger: parallax,
