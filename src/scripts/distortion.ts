@@ -6,6 +6,7 @@ import fragmentShader from '../assets/shaders/distortion/fragment.glsl'
 interface DistortionProps {
 	parent: HTMLElement
 	speed?: number
+	easing?: gsap.EaseString
 	emitOnInitialized?: () => void
 	emitOnShown?: () => void
 	emitOnChanged?: () => void
@@ -37,6 +38,7 @@ export default class Distortion {
 	//props
 	private parent: HTMLElement
 	private speed: number
+	private easing: gsap.EaseString
 	private emitOnInitialized?: () => void
 	private emitOnShown?: () => void
 	private emitOnChanged?: () => void
@@ -71,6 +73,7 @@ export default class Distortion {
 	constructor(props: DistortionProps) {
 		this.parent = props.parent
 		this.speed = props.speed ?? 1
+		this.easing = props.easing ?? 'power2.inOut'
 		this.emitOnInitialized = props.emitOnInitialized
 		this.emitOnShown = props.emitOnShown
 		this.emitOnChanged = props.emitOnChanged
@@ -92,7 +95,7 @@ export default class Distortion {
 
 		this.createMesh()
 
-		this.resizeEvent = () => this.resize(this.texture)	
+		this.resizeEvent = () => this.resize(this.texture)
 	}
 
 	private updateSize(): void {
@@ -175,7 +178,7 @@ export default class Distortion {
 			}
 			updateCamera()
 			gsap
-				.timeline({ defaults: { duration: speed } })
+				.timeline({ defaults: { duration: speed, ease: this.easing } })
 				.to(this.plane.scale, { x: scale })
 				.to(this.camera, { fov: fov }, `-=${speed}`)
 				.eventCallback('onComplete', () => {
@@ -217,17 +220,13 @@ export default class Distortion {
 
 	public show(speed = this.speed): void {
 		gsap
-			.timeline()
+			.timeline({ defaults: { duration: speed, ease: this.easing } })
 			.fromTo(
 				[this.material.uniforms.progress1, this.material.uniforms.progress2],
 				{ value: 1 },
-				{ value: 0, duration: speed, ease: 'power1.out' }
+				{ value: 0 }
 			)
-			.to(
-				this.renderer.domElement,
-				{ autoAlpha: 1, duration: speed },
-				`-=${speed}`
-			)
+			.to(this.renderer.domElement, { autoAlpha: 1 }, `-=${speed}`)
 			.eventCallback('onComplete', () => {
 				if (this.emitOnShown) this.emitOnShown()
 			})
@@ -239,7 +238,7 @@ export default class Distortion {
 			this.material.uniforms.img2.value = this.texture
 			this.resize(this.texture, speed)
 			gsap
-				.timeline({ defaults: { duration: speed } })
+				.timeline({ defaults: { duration: speed, ease: this.easing } })
 				.fromTo(this.material.uniforms.progress1, { value: 0 }, { value: 1 })
 				.fromTo(
 					this.material.uniforms.progress2,
