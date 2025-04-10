@@ -66,6 +66,8 @@ export default class Slider {
 		if (!this.videos) {
 			this.distortion = new Distortion({
 				parent: this.parent,
+				speed: this.speed,
+				easing: this.easing,
 				emitOnInitialized: () => {
 					this.distortion.setIsVisible(true)
 					this.distortion.show()
