@@ -16,7 +16,7 @@
 	&__item {
 		position: relative;
 		width: 75%;
-		max-width: 420px - 2px;
+		max-width: 420px;
 
 		canvas {
 			position: absolute;
@@ -38,6 +38,7 @@
 
 	&__img {
 		top: -2px;
+		left: 2px;
 	}
 
 	&__info {
@@ -66,7 +67,7 @@
 		&__item {
 			flex-basis: 49%;
 			width: initial;
-			max-width: 576px - 2px;
+			max-width: 576px;
 
 			&:nth-child(even) {
 				margin-top: 80px;
