@@ -1,5 +1,6 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Distortion from './distortion'
 
 interface SliderProps {
 	section: HTMLElement
@@ -8,7 +9,6 @@ interface SliderProps {
 	covers?: NodeListOf<HTMLElement>
 	slides: NodeListOf<HTMLElement>
 	videos?: NodeListOf<HTMLVideoElement>
-	// images?: NodeListOf<HTMLImageElement>
 	progress?: HTMLElement
 	autoInit?: boolean
 	autoPlay?: boolean
@@ -26,7 +26,6 @@ export default class Slider {
 	private covers?: NodeListOf<HTMLElement>
 	private slides: NodeListOf<HTMLElement>
 	private videos?: NodeListOf<HTMLVideoElement>
-	// private images?: NodeListOf<HTMLImageElement>
 	private progress?: HTMLElement
 	private autoInit: boolean
 	private autoPlay: boolean
@@ -42,6 +41,7 @@ export default class Slider {
 	private canPlay: boolean = false
 	public initialized: boolean = false
 	private loaded: number[] = []
+	private distortion!: Distortion
 
 	//animations
 	public tls: gsap.core.Timeline[] = []
@@ -55,7 +55,6 @@ export default class Slider {
 		this.covers = props.covers
 		this.slides = props.slides
 		this.videos = props.videos
-		// this.images = props.images
 		this.progress = props.progress
 		this.autoInit = props.autoInit ?? true
 		this.autoPlay = props.autoPlay ?? true
@@ -64,11 +63,35 @@ export default class Slider {
 		this.emitOnShown = props.emitOnShown
 		this.emitOnChange = props.emitOnChange
 
-		this.slides.forEach((slide, index) => {
-			this.createTl(slide)
+		if (!this.videos) {
+			this.distortion = new Distortion({
+				parent: this.parent,
+				speed: this.speed,
+				easing: this.easing,
+				emitOnInitialized: () => {
+					this.distortion.setIsVisible(true)
+					this.distortion.show()
+				},
+				emitOnShown: () => {
+					this.onShowComplete()
 
+					if (this.slides.length === 1) {
+						this.distortion.destroy()
+						this.slides[0].style.display = 'block'
+					}
+				},
+				emitOnChanged: () => {
+					this.onChangeComplete()
+				},
+			})
+		}
+
+		this.slides.forEach((slide, index) => {
 			if (this.videos) {
+				this.createTl(slide)
 				this.createVideoEvents(this.videos[index])
+			} else {
+				slide.style.display = 'none'
 			}
 
 			if (this.buttons) {
@@ -186,9 +209,24 @@ export default class Slider {
 	}
 
 	public show(): void {
-		this.tls[this.currentIndex].play().eventCallback('onComplete', () => {
-			this.onShowComplete()
-		})
+		if (this.videos) {
+			this.tls[this.currentIndex].play().eventCallback('onComplete', () => {
+				this.onShowComplete()
+			})
+		} else {
+			const image = this.parent.querySelector('img') as HTMLImageElement
+			image.loading = 'eager'
+
+			if (image.complete) {
+				this.distortion.init(image.currentSrc)
+			} else {
+				image.addEventListener(
+					'load',
+					() => this.distortion.init(image.currentSrc),
+					{ once: true }
+				)
+			}
+		}
 	}
 
 	private onShowComplete(): void {
@@ -245,6 +283,10 @@ export default class Slider {
 			this.playVideo()
 		} else {
 			this.playImage()
+
+			if (this.initialized) {
+				this.distortion.setIsVisible(true)
+			}
 		}
 	}
 
@@ -253,6 +295,10 @@ export default class Slider {
 			this.pauseVideo({ isCurrentTime: false })
 		} else {
 			this.pauseImage()
+
+			if (this.initialized) {
+				this.distortion.setIsVisible(false)
+			}
 		}
 
 		if (isToggleCanPlay) {
@@ -338,10 +384,26 @@ export default class Slider {
 		this.onChange(index)
 		this.setProgress(0, this.speed / 2)
 
-		this.tls[this.prevIndex].reverse()
-		this.tls[index].play().eventCallback('onComplete', () => {
-			this.onChangeComplete()
-		})
+		if (this.videos) {
+			this.tls[this.prevIndex].reverse()
+			this.tls[index].play().eventCallback('onComplete', () => {
+				this.onChangeComplete()
+			})
+		} else {
+			const images = this.parent.querySelectorAll('img')
+			const image = images[index]
+			image.loading = 'eager'
+
+			if (image.complete) {
+				this.distortion.change(image.currentSrc, index)
+			} else {
+				image.addEventListener(
+					'load',
+					() => this.distortion.change(image.currentSrc, index),
+					{ once: true }
+				)
+			}
+		}
 	}
 
 	private onChange(index: number): void {

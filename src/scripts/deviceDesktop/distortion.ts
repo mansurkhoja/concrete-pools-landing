@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { gsap } from 'gsap'
-import vertexShader from '../assets/shaders/distortion/vertex.glsl'
-import fragmentShader from '../assets/shaders/distortion/fragment.glsl'
+import vertexShader from '../../assets/shaders/distortion/vertex.glsl'
+import fragmentShader from '../../assets/shaders/distortion/fragment.glsl'
 
 interface DistortionProps {
 	parent: HTMLElement

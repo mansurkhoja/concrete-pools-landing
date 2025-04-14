@@ -1,7 +1,5 @@
 import { gsap } from 'gsap'
 
-// let setCursorPosition: (x: number, y: number) => void
-
 export default () => {
 	let isMouseDown = false
 

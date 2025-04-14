@@ -1,4 +1,5 @@
 import { gsap } from 'gsap'
+import { isTouch } from './utils'
 import { onPreloadComplete as intro } from './intro'
 import {
 	onPreloadComplete as management,
@@ -21,21 +22,56 @@ const onReady = () => {
 	})
 }
 
+const loadDeviceModule = async () => {
+	const module = isTouch
+		? await import('./deviceTouch/init')
+		: await import('./deviceDesktop/init')
+	module.default()
+}
+
 const loadAssets = async () => {
-	if (import.meta.env.DEV) {
-		try {
-			loadManagement()
-			onReady()
-		} catch (error) {
-			if (import.meta.env.DEV) {
-				alert('Error loading assets:' + error)
-			}
-		}
-	} else {
+	try {
+		await loadDeviceModule()
 		await loadManagement()
 		onReady()
+	} catch (error) {
+		if (import.meta.env.DEV) {
+			alert('Error loading assets:' + error)
+		}
 	}
 }
+
+// const loadAssets = async () => {
+// 	if (import.meta.env.DEV) {
+// 		try {
+// 			if (isTouch) {
+// 				const module = await import('./deviceTouch/init')
+// 				module.default()
+// 			} else {
+// 				const module = await import('./deviceDesktop/init')
+// 				module.default()
+// 			}
+
+// 			loadManagement()
+// 			onReady()
+// 		} catch (error) {
+// 			if (import.meta.env.DEV) {
+// 				alert('Error loading assets:' + error)
+// 			}
+// 		}
+// 	} else {
+// 		if (isTouch) {
+// 			const module = await import('./deviceTouch/init')
+// 			module.default()
+// 		} else {
+// 			const module = await import('./deviceDesktop/init')
+// 			module.default()
+// 		}
+
+// 		await loadManagement()
+// 		onReady()
+// 	}
+// }
 
 export default () => {
 	loadAssets()

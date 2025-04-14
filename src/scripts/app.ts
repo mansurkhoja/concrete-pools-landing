@@ -2,16 +2,12 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import Lenis from 'lenis'
-import { isTouch } from './utils'
 import lazyImage from './lazyImage'
 import nav from './nav'
-import modal from './modal'
 import form from './form'
 import intro from './intro'
 import management from './management'
-import life from './life'
 import process from './process'
-import portfolio from './portfolio'
 import gallery from './gallery'
 import reviews from './reviews'
 import contacts from './contacts'
@@ -47,32 +43,15 @@ export default () => {
 
 	nav()
 
-	modal()
-
 	form()
 
 	intro()
 
 	management()
 
-	life()
-
 	process()
 
-	portfolio()
-	
 	gallery()
-
-	if (isTouch) {
-		import('./modelTouch').then(model => model.default())
-		import('./teamTouch').then(team => team.default())
-		import('./footerTouch').then(footer => footer.default())
-	} else {
-		import('./cursor').then(cursor => cursor.default())
-		import('./model').then(model => model.default())
-		import('./team').then(team => team.default())
-		import('./footer').then(footer => footer.default())
-	}
 
 	reviews()
 

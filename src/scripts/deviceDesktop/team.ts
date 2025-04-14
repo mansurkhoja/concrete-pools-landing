@@ -1,5 +1,5 @@
 import { gsap } from 'gsap'
-import { bodyScroll } from './app'
+import { bodyScroll } from '../app'
 
 const list = document.querySelector('.team__list') as HTMLElement
 const items = list.querySelectorAll(

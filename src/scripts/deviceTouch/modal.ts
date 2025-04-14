@@ -1,7 +1,6 @@
 import { gsap } from 'gsap'
-import { bodyScroll } from './app'
-import Slider from './slider'
-import { isTouch } from './utils'
+import { bodyScroll } from '../app'
+import Slider from '../slider'
 
 interface ModalSliders {
 	[key: string]: {
@@ -118,7 +117,7 @@ export default () => {
 				parent: sliderContainer,
 				slides: slides,
 				speed: 1.2,
-				easing: isTouch ? 'power1.in' : 'power2.inOut',
+				easing: 'power1.in',
 				autoInit: false,
 				emitOnShown() {
 					const activeModalId = activeModal?.getAttribute('id')

@@ -1,7 +1,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { isTouch } from './utils'
-import Slider from './slider'
+import Slider from './sliderDistortion'
+import parallax from './parallax'
 
 const header = document.querySelector('.life__header') as HTMLElement
 const title = document.querySelector('.life__title') as HTMLElement
@@ -87,8 +87,8 @@ export default () => {
 		parent: sliderParent,
 		buttons: sliderButtons,
 		slides: slides,
-		speed: isTouch ? 1.6 : 1.2,
-		easing: isTouch ? 'power1.in' : 'power2.out'
+		speed: 1.2,
+		easing: 'power2.out'
 	})
 
 	ScrollTrigger.create({
@@ -98,9 +98,5 @@ export default () => {
 		onEnter: () => slider.show(),
 	})
 
-	if (isTouch) {
-		import('./parallaxTouch').then(parallax => parallax.default())
-	} else {
-		import('./parallax').then(parallax => parallax.default())
-	}
+	parallax()
 }

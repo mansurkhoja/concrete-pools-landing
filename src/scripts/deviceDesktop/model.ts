@@ -1,7 +1,7 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Distortion from './distortion'
-import Fluid from './fluid/Fluid'
+import Fluid from '../fluid/Fluid'
 
 const items = document.querySelectorAll(
 	'.model__item'
