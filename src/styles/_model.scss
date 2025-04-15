@@ -18,6 +18,13 @@
 		width: 75%;
 		max-width: 420px;
 
+		canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+			pointer-events: none;
+		}
+
 		&::after {
 			content: "";
 			display: block;
@@ -27,6 +34,11 @@
 		&:nth-child(2) {
 			margin-left: auto;
 		}
+	}
+
+	&__img {
+		top: -2px;
+		left: 2px;
 	}
 
 	&__info {

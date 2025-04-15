@@ -4,97 +4,91 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 interface SliderProps {
 	section: HTMLElement
 	parent: HTMLElement
-	buttons: NodeListOf<HTMLElement>
+	buttons?: NodeListOf<HTMLElement>
 	covers?: NodeListOf<HTMLElement>
-	voiceButton?: HTMLElement
-	playButton?: HTMLElement
-	prevButton?: HTMLElement
-	nextButton?: HTMLElement
 	slides: NodeListOf<HTMLElement>
-	videos: NodeListOf<HTMLVideoElement>
+	videos?: NodeListOf<HTMLVideoElement>
+	// images?: NodeListOf<HTMLImageElement>
 	progress?: HTMLElement
 	autoInit?: boolean
-	autoplay?: boolean
-	muted?: boolean
+	autoPlay?: boolean
 	speed?: number
 	easing?: gsap.EaseString
-	emitOnChange?: () => void
 	emitOnShown?: () => void
+	emitOnChange?: () => void
 }
 
 export default class Slider {
 	//props
 	private section: HTMLElement
 	private parent: HTMLElement
-	private buttons: NodeListOf<HTMLElement>
+	private buttons?: NodeListOf<HTMLElement>
 	private covers?: NodeListOf<HTMLElement>
-	private voiceButton?: HTMLElement
-	private playButton?: HTMLElement
-	private prevButton?: HTMLElement
-	private nextButton?: HTMLElement
 	private slides: NodeListOf<HTMLElement>
-	private videos: NodeListOf<HTMLVideoElement>
+	private videos?: NodeListOf<HTMLVideoElement>
+	// private images?: NodeListOf<HTMLImageElement>
 	private progress?: HTMLElement
 	private autoInit: boolean
-	private autoplay: boolean
-	private muted: boolean
+	private autoPlay: boolean
 	private speed: number
 	private easing: gsap.EaseString
-	private emitOnChange?: () => void
 	private emitOnShown?: () => void
+	private emitOnChange?: () => void
 
 	// state
 	private currentIndex: number = 0
 	private prevIndex: number = 0
 	private animating: boolean = false
 	private canPlay: boolean = false
-	private initialized: boolean = false
+	public initialized: boolean = false
 	private loaded: number[] = []
 
 	//animations
 	public tls: gsap.core.Timeline[] = []
 	private progressId!: number
+	private delayedCall!: gsap.core.Tween
 
 	constructor(props: SliderProps) {
 		this.section = props.section
 		this.parent = props.parent
 		this.buttons = props.buttons
 		this.covers = props.covers
-		this.voiceButton = props.voiceButton
-		this.playButton = props.playButton
-		this.prevButton = props.prevButton
-		this.nextButton = props.nextButton
 		this.slides = props.slides
 		this.videos = props.videos
+		// this.images = props.images
 		this.progress = props.progress
 		this.autoInit = props.autoInit ?? true
-		this.autoplay = props.autoplay ?? true
-		this.muted = props.muted ?? false
+		this.autoPlay = props.autoPlay ?? true
 		this.speed = props.speed ?? 1.2
-		this.easing = props.easing ?? 'power1.inOut'
-		this.emitOnChange = props.emitOnChange
+		this.easing = props.easing ?? 'power2.inOut'
 		this.emitOnShown = props.emitOnShown
+		this.emitOnChange = props.emitOnChange
 
 		this.slides.forEach((slide, index) => {
-			this.createVideoEvents(this.videos[index])
 			this.createTl(slide)
+
+			if (this.videos) {
+				this.createVideoEvents(this.videos[index])
+			}
+
+			if (this.buttons) {
+				this.buttons[index].addEventListener('click', () => {
+					this.change(index)
+				})
+			}
 		})
 
 		this.createButtonsEvent()
 	}
 
-	private createTl(video: HTMLElement): void {
+	private createTl(slide: HTMLElement): void {
 		this.tls.push(
 			gsap
 				.timeline({
 					paused: true,
-					defaults: { ease: this.easing },
+					defaults: { ease: this.easing, duration: this.speed },
 				})
-				.fromTo(
-					video,
-					{ scale: 1.2, autoAlpha: 0, duration: this.speed },
-					{ scale: 1, autoAlpha: 1, duration: this.speed }
-				)
+				.fromTo(slide, { scale: 1.2, autoAlpha: 0 }, { scale: 1, autoAlpha: 1 })
 		)
 	}
 
@@ -105,36 +99,34 @@ export default class Slider {
 	}
 
 	private createButtonsEvent(): void {
-		this.buttons.forEach((btn, index) => {
-			btn.addEventListener('click', () => {
-				this.change(index)
-			})
-		})
+		const voiceButton = this.section.querySelector('.btn-voice')
+		const playButton = this.section.querySelector('.btn-play')
+		const prevButton = this.section.querySelector('.btn-prev')
+		const nextButton = this.section.querySelector('.btn-next')
 
-		if (this.voiceButton) {
-			this.voiceButton.addEventListener('click', () => {
+		if (voiceButton) {
+			voiceButton.addEventListener('click', () => {
 				if (this.canPlay) {
-					this.muted = !this.muted
-					this.voiceButton!.classList.toggle('muted', this.muted)
-					this.voiceButton!.classList.toggle('btn--active', this.muted)
 					this.videos!.forEach(video => {
-						video.muted = !this.muted
+						video.muted = !video.muted
 					})
+					voiceButton.classList.toggle('muted', !this.videos![0].muted)
+					voiceButton.classList.toggle('btn--active', !this.videos![0].muted)
 				}
 			})
 		}
 
-		if (this.playButton) {
-			this.playButton.addEventListener('click', () => {
+		if (playButton) {
+			playButton.addEventListener('click', () => {
 				if (this.canPlay && !this.animating) {
 					if (this.loaded.includes(this.currentIndex)) {
-						this.playVideo()
+						this.playVideo(true)
 					} else {
 						const index = this.currentIndex
 						const slide = this.slides[index]
 						if (!slide.classList.contains('load') && this.covers) {
 							slide.classList.add('load')
-							const video = this.videos[index]
+							const video = this.videos![index]
 							const cover = this.covers[index]
 							video.load()
 							video.addEventListener(
@@ -149,7 +141,7 @@ export default class Slider {
 										},
 									})
 									if (this.canPlay && this.currentIndex === index) {
-										this.playVideo()
+										this.playVideo(true)
 										this.toggleButtonPlay()
 									}
 								},
@@ -165,23 +157,63 @@ export default class Slider {
 			})
 		}
 
-		if (this.prevButton) {
-			this.prevButton.addEventListener('click', () => {
-				this.change(
-					(this.currentIndex - 1 + this.slides.length) % this.slides.length
-				)
-			})
+		if (prevButton) {
+			if (this.slides.length > 1) {
+				prevButton.addEventListener('click', () => {
+					this.change(
+						(this.currentIndex - 1 + this.slides.length) % this.slides.length
+					)
+				})
+			} else {
+				prevButton.classList.add('d-none')
+			}
 		}
 
-		if (this.nextButton) {
-			this.nextButton.addEventListener('click', () => {
-				this.change()
-			})
+		if (nextButton) {
+			if (this.slides.length > 1) {
+				nextButton.addEventListener('click', () => {
+					this.change()
+				})
+			} else {
+				nextButton.classList.add('d-none')
+			}
 		}
 	}
 
 	private toggleButtonPlay(isPlay = true): void {
-		this.playButton?.classList.toggle('playing', isPlay)
+		const playButton = this.section.querySelector('.btn-play')
+		playButton?.classList.toggle('playing', isPlay)
+	}
+
+	public show(): void {
+		this.tls[this.currentIndex].play().eventCallback('onComplete', () => {
+			this.onShowComplete()
+		})
+	}
+
+	private onShowComplete(): void {
+		if (this.emitOnShown) {
+			this.emitOnShown()
+		}
+
+		if (this.autoInit) {
+			this.init()
+		}
+
+		this.section.classList.add('slider-showed')
+
+		if (!this.initialized) {
+			document.addEventListener('visibilitychange', () => {
+				if (this.canPlay) {
+					if (document.visibilityState === 'hidden') {
+						this.stopSlider(false)
+					} else {
+						this.startSlider(false)
+					}
+				}
+			})
+			this.initialized = true
+		}
 	}
 
 	public init(): void {
@@ -191,18 +223,6 @@ export default class Slider {
 			end: 'bottom center',
 			onEnter: () => {
 				this.startSlider()
-				if (!this.initialized) {
-					document.addEventListener('visibilitychange', () => {
-						if (this.canPlay) {
-							if (document.visibilityState === 'hidden') {
-								this.stopSlider(false)
-							} else {
-								this.startSlider(false)
-							}
-						}
-					})
-					this.initialized = true
-				}
 			},
 			onLeave: () => {
 				this.stopSlider()
@@ -216,56 +236,40 @@ export default class Slider {
 		})
 	}
 
-	public show(): void {
-		this.tls[this.currentIndex].play().eventCallback('onComplete', () => {
-			this.onShowComplete()
-		})
-	}
-
-	private onShowComplete(): void {
-		// this.animating = false
-
-		if (this.emitOnShown) {
-			this.emitOnShown()
-		}
-
-		if (this.autoInit) {
-			this.init()
-		}
-
-		if (this.progress) {
-			this.progress.classList.add('progress--active')
-		}
-	}
-
-	private startSlider(isToggleCanPlay: boolean = true): void {
+	public startSlider(isToggleCanPlay: boolean = true): void {
 		if (isToggleCanPlay) {
 			this.canPlay = true
 		}
 
-		if (this.autoplay) {
+		if (this.videos) {
 			this.playVideo()
+		} else {
+			this.playImage()
 		}
 	}
 
-	private stopSlider(isToggleCanPlay: boolean = true): void {
-		this.pauseVideo({ isCurrentTime: false })
+	public stopSlider(isToggleCanPlay: boolean = true): void {
+		if (this.videos) {
+			this.pauseVideo({ isCurrentTime: false })
+		} else {
+			this.pauseImage()
+		}
 
 		if (isToggleCanPlay) {
 			this.canPlay = false
 		}
 	}
 
-	public async playVideo(): Promise<void> {
-		if (this.canPlay) {
+	private async playVideo(autoPlay = this.autoPlay): Promise<void> {
+		if (this.canPlay && autoPlay) {
 			const index = this.currentIndex
-			const video = this.videos[index]
+			const video = this.videos![index]
 			await video.play()
 			this.startProgress()
 		}
 	}
 
-	public pauseVideo({
+	private pauseVideo({
 		index = this.currentIndex,
 		isCurrentTime = true,
 		isStopProgress = true,
@@ -277,7 +281,7 @@ export default class Slider {
 		if (isStopProgress) {
 			this.stopProgress()
 		}
-		const video = this.videos[index]
+		const video = this.videos![index]
 
 		video.pause()
 
@@ -288,9 +292,19 @@ export default class Slider {
 		this.toggleButtonPlay(false)
 	}
 
+	private playImage(): void {
+		this.delayedCall = gsap.delayedCall(4, () => {
+			this.change()
+		})
+	}
+
+	private pauseImage(): void {
+		this.delayedCall?.kill()
+	}
+
 	private startProgress(): void {
 		if (this.progress) {
-			const video = this.videos[this.currentIndex]
+			const video = this.videos![this.currentIndex]
 			this.progressId = setInterval(() => {
 				if (!(video.paused || video.ended)) {
 					const value = Math.round((video.currentTime / video.duration) * 100)
@@ -311,12 +325,16 @@ export default class Slider {
 	}
 
 	public change(
-		index: number = (this.currentIndex + 1) % this.videos.length
+		index: number = (this.currentIndex + 1) % this.slides.length
 	): void {
 		if (this.animating || this.currentIndex === index || !this.canPlay) return
 
 		this.animating = true
-		this.pauseVideo({ isCurrentTime: false })
+		if (this.videos) {
+			this.pauseVideo({ isCurrentTime: false })
+		} else {
+			this.pauseImage()
+		}
 		this.onChange(index)
 		this.setProgress(0, this.speed / 2)
 
@@ -331,8 +349,11 @@ export default class Slider {
 		this.currentIndex = index
 
 		this.section.setAttribute('data-slider', index.toString())
-		this.buttons[this.prevIndex].classList.remove('active')
-		this.buttons[this.currentIndex].classList.add('active')
+
+		if (this.buttons) {
+			this.buttons[this.prevIndex].classList.remove('active')
+			this.buttons[this.currentIndex].classList.add('active')
+		}
 
 		if (this.emitOnChange) {
 			this.emitOnChange()
@@ -341,12 +362,14 @@ export default class Slider {
 
 	private onChangeComplete(): void {
 		this.animating = false
-		this.pauseVideo({
-			index: this.prevIndex,
-		})
 
-		if (this.autoplay) {
+		if (this.videos) {
+			this.pauseVideo({
+				index: this.prevIndex,
+			})
 			this.playVideo()
+		} else {
+			this.playImage()
 		}
 	}
 }

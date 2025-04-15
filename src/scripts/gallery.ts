@@ -1,6 +1,6 @@
 import Lenis from 'lenis'
-import { isTouch } from './utils'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { isTouch } from './utils'
 
 const galleries = document.querySelectorAll(
 	'.gallery'

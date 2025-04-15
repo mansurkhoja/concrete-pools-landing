@@ -11,6 +11,7 @@
     "preview": "vite preview --port 9993 --host"
   },
   "devDependencies": {
+    "@types/three": "^0.175.0",
     "@yandex/ymaps3-types": "^1.0.15542062",
     "autoprefixer": "^10.4.20",
     "htmlhint": "^1.1.4",
@@ -18,12 +19,14 @@
     "sass": "^1.83.0",
     "typescript": "~5.6.2",
     "vite": "^6.0.5",
+    "vite-plugin-glsl": "^1.4.0",
     "vite-plugin-html-inject": "^1.1.2",
     "vite-plugin-minify": "^2.1.0"
   },
   "dependencies": {
     "gsap": "^3.12.5",
-    "lenis": "^1.1.18"
+    "lenis": "^1.1.18",
+    "three": "^0.175.0"
   },
   "engines": {
     "node": ">=22.12.0",

@@ -2,22 +2,16 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ScrollToPlugin from 'gsap/ScrollToPlugin'
 import Lenis from 'lenis'
-import { isTouch } from './utils'
 import lazyImage from './lazyImage'
 import nav from './nav'
-import modal from './modal'
 import form from './form'
 import intro from './intro'
 import management from './management'
-import model from './model'
-import life from './life'
 import process from './process'
-import portfolio from './portfolio'
 import gallery from './gallery'
 import reviews from './reviews'
 import contacts from './contacts'
 import map from './map'
-import footer from './footer'
 
 export let bodyScroll: Lenis
 
@@ -49,36 +43,19 @@ export default () => {
 
 	nav()
 
-	modal()
-
 	form()
 
 	intro()
 
 	management()
 
-	model()
-
-	life()
-
 	process()
 
-	portfolio()
-	
 	gallery()
-
-	if (isTouch) {
-		import('./teamTouch').then(team => team.default())
-	} else {
-		import('./team').then(team => team.default())
-		import('./cursor').then(cursor => cursor.default())
-	}
 
 	reviews()
 
 	contacts()
 
 	map()
-
-	footer()
 }

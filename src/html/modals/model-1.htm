@@ -7,7 +7,48 @@
 		</button>
 		<div class="modal__inner">
 			<div class="modal__image lazy">
-				<img class="fit-cover" loading="lazy" src="/src/assets/images/model/modal_1.webp" alt="Скимерный бассейн">
+				<div class="modal__slider absolute o-hidden">
+					<div class="modal__slider-container absolute">
+						<div class="absolute o-hidden">
+							<div class="modal__slide absolute lazy">
+								<picture>
+									<source media="(min-width: 720px)"
+										srcset="/src/assets/images/model/modal/1.webp 1x, /src/assets/images/model/modal/1_2x.webp 2x">
+									<source media="(max-width: 719px)"
+										srcset="/src/assets/images/model/modal/1_mob.webp 1x, /src/assets/images/model/modal/1_mob_2x.webp 2x">
+									<img class="fit-cover" loading="lazy" src="/src/assets/images/model/modal/1.webp"
+										alt="Скимерный бассейн" width="350" height="263">
+								</picture>
+							</div>
+						</div>
+						<div class="absolute o-hidden">
+							<div class="modal__slide absolute lazy">
+								<picture>
+									<source media="(min-width: 1280px)"
+										srcset="/src/assets/images/life/1.webp 1x, /src/assets/images/life/1_2x.webp 2x">
+									<source media="(min-width: 1024px)"
+										srcset="/src/assets/images/life/1_tab.webp 1x, /src/assets/images/life/1_tab_2x.webp 2x">
+									<source media="(min-width: 720px)"
+										srcset="/src/assets/images/life/1_tm.webp 1x, /src/assets/images/life/1_tm_2x.webp 2x">
+									<source media="(max-width: 719px)"
+										srcset="/src/assets/images/life/1_mob.webp 1x, /src/assets/images/life/1_mob_2x.webp 2x">
+									<img alt="life" width="430" height="300" src="/src/assets/images/life/1.webp" loading="lazy"
+										class="fit-cover">
+								</picture>
+							</div>
+						</div>
+						<div class="absolute o-hidden">
+							<div class="modal__slide absolute lazy">
+								<picture>
+									<img class="fit-cover" loading="lazy" src="/src/assets/images/model/modal/modal_1.webp"
+										alt="Скимерный бассейн">
+								</picture>
+							</div>
+						</div>
+					</div>
+					<button class="btn-prev absolute" aria-label="Пред слайд"></button>
+					<button class="btn-next absolute" aria-label="След слайд"></button>
+				</div>
 			</div>
 			<div class="modal__title">
 				Скиммерный бассейн

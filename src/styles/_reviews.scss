@@ -28,8 +28,8 @@ $reviews-item-width--desktop: 370px;
 		width: $reviews-item-width;
 		will-change: transform, opacity;
 		transition:
-			transform map.get(var.$transition-duration, "default") var.$easing-ease-in-out,
-			opacity map.get(var.$transition-duration, "default") var.$easing-linear;
+			transform map.get(var.$transition-duration, "default") + 0.2s var.$easing-ease-in-out,
+			opacity map.get(var.$transition-duration, "default") var.$easing-sine-in-out;
 
 		&::after {
 			content: "";
