@@ -32,7 +32,7 @@ export default class WebGL {
 			Common: this.Common,
 			Mouse: this.Mouse,
 			src: this.props.src,
-			onLoad: this.props.onLoad
+			onLoad: this.props.onLoad,
 		})
 
 		ScrollTrigger.create({
@@ -51,6 +51,14 @@ export default class WebGL {
 			onLeaveBack: () => {
 				this.isVisible = false
 			},
+		})
+
+		document.addEventListener('visibilitychange', () => {
+			if (document.visibilityState === 'hidden') {
+				this.isVisible = false
+			} else {
+				this.isVisible = true
+			}
 		})
 	}
 
