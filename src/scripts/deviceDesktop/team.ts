@@ -50,6 +50,15 @@ const onMouseMoveList = (e: MouseEvent) => {
 	setAvatarContainerPosition(x, y)
 }
 
+bodyScroll.on('scroll', () => {
+	const rect = list.getBoundingClientRect()
+	const isMouseOutside = clientYList < rect.top || clientYList > rect.bottom
+
+	if (isMouseOutside) {
+		isMouseEnteredList = false
+	}
+})
+
 const itemBgYPercent = (e: MouseEvent, itemHalfHeight: number) =>
 	e.offsetY > itemHalfHeight ? 100 : -100
 
