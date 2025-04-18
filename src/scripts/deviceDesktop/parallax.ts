@@ -41,7 +41,6 @@ export default () => {
 			trigger: parallax,
 			start: '-=340px bottom',
 			once: true,
-			markers: true,
 			onEnter: () => {
 				hideImage.play()
 				parallaxContainer.classList.remove('lazy')
