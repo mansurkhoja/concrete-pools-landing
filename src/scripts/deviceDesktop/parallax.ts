@@ -34,17 +34,14 @@ export default () => {
 						distortion.show()
 					},
 				})
-			},
-			emitOnShown() {
-				hideImage.reverse()
-				distortion.destroy()
-			},
+			}
 		})
 
 		ScrollTrigger.create({
 			trigger: parallax,
 			start: '-=340px bottom',
 			once: true,
+			markers: true,
 			onEnter: () => {
 				hideImage.play()
 				parallaxContainer.classList.remove('lazy')
@@ -57,6 +54,10 @@ export default () => {
 						{ once: true }
 					)
 				}
+			},
+			onLeave: () => {
+				hideImage.reverse()
+				distortion.destroy()
 			},
 		})
 
